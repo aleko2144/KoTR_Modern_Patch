@@ -1,5 +1,5 @@
 # KoTR_Modern_Patch
-King of the Road v8.2/v1.4 patch sources
+King of the Road v8.2/v1.4 [patch](https://www.moddb.com/games/hard-truck-2/downloads/king-of-the-road-modern-patch) sources
 
 File "CPatch.h" included from [D2DInputWrapper](https://github.com/Voron295/rignroll-dinput-wrapper) by Voron295.
 
