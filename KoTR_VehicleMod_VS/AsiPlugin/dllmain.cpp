@@ -527,7 +527,10 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD fdwReason,LPVOID lpvReserved)
 	{
 		case DLL_PROCESS_ATTACH:
 		{
-			DisplayConsole();
+			if (GetPrivateProfileIntA("mod", "display_console", 0, ".\\KoTR_VehicleMod.ini") != 0)
+			{
+				DisplayConsole();
+			}
 
 			ReadConfig();
 
