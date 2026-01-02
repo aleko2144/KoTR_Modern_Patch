@@ -478,7 +478,7 @@ void GetInput(){
 
 DWORD* prev_player_ptr;*/
 
-void OnTimer(HWND hwnd, UINT msg, UINT idTimer, DWORD dwTime){
+void CALLBACK OnTimer(HWND hwnd, UINT msg, UINT_PTR idTimer, DWORD dwTime){
 	if (*(DWORD *)0x6D2098){
 		//TestFunction();
 		GetInput();
@@ -533,7 +533,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD fdwReason,LPVOID lpvReserved)
 
 			AttachHooks();
 
-			SetTimer(0, 0, 10, (TIMERPROC)OnTimer);
+			SetTimer(0, 0, 10, OnTimer);
 
 			break;
 		}

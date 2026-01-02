@@ -352,7 +352,7 @@ void DisplayConsole(){
 	SetConsoleOutputCP(1251);
 }
 
-void OnTimer(HWND hwnd,   UINT msg, UINT idTimer, DWORD dwTime)
+void CALLBACK OnTimer(HWND hwnd,   UINT msg, UINT_PTR idTimer, DWORD dwTime)
 {
 	//*(DWORD*)0x6D2098 - Viewer
 	//*(DWORD*)0x6F6930 - playerVehicle
@@ -374,7 +374,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD fdwReason,LPVOID lpvReserved)
 				return TRUE;
 			//DisplayConsole();
 			cout << "InteriorMod v1.2 (03.11.2025) started." << endl;
-			SetTimer(0, 0, 15, (TIMERPROC)OnTimer);
+			SetTimer(0, 0, 15, OnTimer);
 			break;
 		}
 		case DLL_PROCESS_DETACH:

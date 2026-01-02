@@ -27,7 +27,7 @@ float collision_coeff = 0.5;
 float* friction_coeff_ptr = (float*)0x696BFC;
 float* collision_coeff_ptr = (float*)0x696C00; 
 
-void OnTimer(HWND hwnd, UINT msg, UINT idTimer, DWORD dwTime)
+void CALLBACK OnTimer(HWND hwnd, UINT msg, UINT_PTR idTimer, DWORD dwTime)
 {
 	if (*friction_coeff_ptr != friction_coeff) {
 		*friction_coeff_ptr = friction_coeff;
@@ -66,7 +66,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD fdwReason,LPVOID lpvReserved)
 			if (!GetPrivateProfileIntA("MOD", "Enabled", 0, ".\\KoTR_CollisionMod.ini"))
 				return TRUE;
 
-			SetTimer(0, 0, 50, (TIMERPROC)OnTimer);
+			SetTimer(0, 0, 50, OnTimer);
 
 			friction_coeff = GetPrivateProfileFloat("CAR", "friction_coeff", "1.4", ".\\KoTR_CollisionMod.ini");
 			collision_coeff = GetPrivateProfileFloat("CAR", "collision_coeff", "0.5", ".\\KoTR_CollisionMod.ini");

@@ -331,7 +331,7 @@ void update_tractor_params(){
 	}
 }
 
-void OnTimer(HWND hwnd, UINT msg, UINT idTimer, DWORD dwTime){
+void CALLBACK OnTimer(HWND hwnd, UINT msg, UINT_PTR idTimer, DWORD dwTime){
 	if (*(DWORD *)0x6D2098){
 		update_tractor_params();
 	}
@@ -347,7 +347,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD fdwReason,LPVOID lpvReserved)
 			if (!GetPrivateProfileInt("mod", "enabled", 0, ".\\KoTR_PhysicsMod.ini"))
 				return TRUE;
 
-			SetTimer(0, 0, 50, (TIMERPROC)OnTimer);
+			SetTimer(0, 0, 50, OnTimer);
 
 			bool display_console = GetPrivateProfileInt("mod", "display_console", 0, ".\\KoTR_PhysicsMod.ini");
 
