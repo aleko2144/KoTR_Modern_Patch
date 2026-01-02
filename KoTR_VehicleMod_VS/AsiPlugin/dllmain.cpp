@@ -46,6 +46,7 @@ int GetChildCount(DWORD* offset){
 	if (offset){
 		return *(int*)((int)offset + 52);
 	}
+	return 0;
 }
 void SetCaseSwitch_s(DWORD* offset, int state){
 	if (offset && state < GetChildCount(offset)){
@@ -73,14 +74,10 @@ int TurnSignalLKey = 0;
 int TurnSignalHKey = 0;
 bool UseTurnSignals = false;
 
-bool is_indicators_flashed;
-
 int TurnSignalsKey_state;
 
 float ai_signals_rotation_lim = 0.5;
 float ai_max_damage = 0.5;
-
-bool is_player_vehicle = false;
 
 DWORD* blinker_onSound;
 DWORD* blinker_offSound;
@@ -229,16 +226,9 @@ void InitVehicleNodes(){
 	//если используется mat_pribor), т.к. в cabines.res прописан noz для материалов стандартных салонов
 }
 
-int __cdecl sub_5CB980(int a1){
-	typedef int (* sub_5CB980)();
-	return sub_5CB980(0x5CB980)();
-}
-
 //sub_53FCA0->sub_57C980
-int sub_57C980(__int16 a1){
-	*(__int16 *)0x67D10A = a1;
-	*(DWORD *)0x6F6640 = 0;
-
+static void (*original_sub_57C980)(short) = (void(*)(short))0x57C980;
+void sub_57C980(__int16 a1){
 	//вставка
 	InitVehicleNodes();
 	//
@@ -250,7 +240,7 @@ int sub_57C980(__int16 a1){
 	blinker_relayOffSound = SearchRESSound("blinker_relayOffSound");
 	//
 
-	return sub_5CB980((*(DWORD*)0x67844C));
+	original_sub_57C980(a1);
 }
 
 void DisplayConsole(){
@@ -358,97 +348,21 @@ void TestFunction(){
 	//}
 }
 
-DWORD *m_carNodes_GlowFLKey = (DWORD*)0x6D220C;
-DWORD *m_carNodes_GlowFRKey = (DWORD*)0x6D2210;
-
-DWORD *m_carNodes_BFaraL_StopFaraKeyL = (DWORD*)0x6D213C;
-DWORD *m_carNodes_BFaraR_StopFaraKeyR = (DWORD*)0x6D2140;
-
-DWORD *m_carNodes_BFaraL_BackFaraKeyL = (DWORD*)0x6D214C;
-DWORD *m_carNodes_BFaraR_BackFaraKeyR = (DWORD*)0x6D2150;
-
-void __fastcall ProcessVehicleLights(DWORD* _this, DWORD EDX){
-	DWORD* vehicle = _this;
-	DWORD* vehicleCar_V = (DWORD *)(vehicle[5400]);
+static void (__thiscall* original_ProcessVehicleLights)(void* _this) = (void(__thiscall*)(void*))0x546CA0;
+void __fastcall ProcessVehicleLights(void* _this){
+	DWORD* vehicle = (DWORD*)_this;
 
 	DWORD techID = vehicle[2605];
 
 	//vehicleCar_V[2446] = 3; //hi_fi (1 - simplified, 3 - std)
 
-	if (_this == (DWORD*)(*(DWORD*)0x6F6930)){
-		is_player_vehicle = true;
-	} else {
-		is_player_vehicle = false;
-	}
+	const bool is_player_vehicle = _this == (DWORD*)(*(DWORD*)0x6F6930);
 
 	//***** переключение объектов *****//
-
-	DWORD* node;
-
-	
-	//*** StopFaraKeyR/L ***//
-	int stopLightsState = vehicle[5214];
-
-	//BFaraL_StopFaraKeyL
-	node = (DWORD*)m_carNodes_BFaraL_StopFaraKeyL[372 * techID];
-
-	int v2 = ((unsigned int)~vehicle[5225] >> 7) & 1;
-	if ( (v2 || !*(DWORD *)(vehicle[2384] + 144)) && stopLightsState ){
-		CBlockSpace__SetOffset(node, 1);
-	} else {
-		CBlockSpace__SetOffset(node, 0);
-	}
-
-	//BFaraR_StopFaraKeyR
-	node = (DWORD*)m_carNodes_BFaraR_StopFaraKeyR[372 * techID];
-
-	if ( (v2 || !*(DWORD *)(vehicle[2384] + 124)) && stopLightsState ){
-		CBlockSpace__SetOffset(node, 1);
-	} else if ( vehicle[5229] ) {
-		CBlockSpace__SetOffset(node, 2);
-	} else {
-		CBlockSpace__SetOffset(node, 0);
-	}
-
-
-
-	//*** BackFaraKeyR/L ***//
-	int reverseLightsState = vehicle[5215];
-
-	//BFaraL_BackFaraKeyL
-	node = (DWORD*)m_carNodes_BFaraL_BackFaraKeyL[372 * techID];
-
-	if ( (v2 || !*(DWORD *)(vehicle[2384] + 144)) && reverseLightsState ) {
-		CBlockSpace__SetOffset(node, 1);
-	} else {
-		CBlockSpace__SetOffset(node, 0);
-	}
-
-	//BFaraR_BackFaraKeyR
-	node = (DWORD*)m_carNodes_BFaraR_BackFaraKeyR[372 * techID];
-
-	if ( (v2 || !*(DWORD *)(vehicle[2384] + 124)) && reverseLightsState ) {
-		CBlockSpace__SetOffset(node, 1);
-	} else {
-		CBlockSpace__SetOffset(node, 0);
-	}
-
-	//пропуск:
-	//m_carNodes_FGL_FGR_BGL_BGRKey
-	//m_carNodes_GlowFLKey
-	//m_carNodes_GlowFRKey
-
-	//*** HeadLightKey ***//
-	node = (DWORD*)vehicle[5125];
-
-	if ( vehicle[5230] || vehicle[5229] ) {
-		CBlockSpace__SetOffset(node, 1);
-	} else {
-		CBlockSpace__SetOffset(node, 0);
-	}
-
+	original_ProcessVehicleLights(_this);
 
 	//***** новые объекты *****//
+	DWORD* node;
 
 	//*** TurnSignalsKey ***//
 	node = (DWORD*)m_carNodes_TurnSignalsKey[372 * techID];
@@ -493,11 +407,8 @@ void AttachHooks(){
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
 
-	DWORD addr_57C980 = 0x57C980;
-	DWORD addr_546CA0 = 0x546CA0;
-
-	DetourAttach(&(LPVOID&)addr_57C980, &sub_57C980);
-	DetourAttach(&(LPVOID&)addr_546CA0, &ProcessVehicleLights);
+	DetourAttach(&(LPVOID&)original_sub_57C980, &sub_57C980);
+	DetourAttach(&(LPVOID&)original_ProcessVehicleLights, &ProcessVehicleLights);
 
     DetourTransactionCommit();
 
@@ -592,7 +503,7 @@ void ReadConfig(){
 	//UseTurnSignals = GetPrivateProfileIntA("COMMON", "TurnSignals", 0, ".\\KoTR_VehicleMod.ini");
 
 	//может не работать из-за кодировки! жесть какая!
-	UseTurnSignals = GetPrivateProfileIntA("MOD", "Enabled", 0, ".\\KoTR_VehicleMod.ini");
+	UseTurnSignals = GetPrivateProfileIntA("MOD", "Enabled", 0, ".\\KoTR_VehicleMod.ini") != 0;
 
 	if (UseTurnSignals)
 		cout << "VehicleMod v0.3 (03.11.2025) started.\n";
