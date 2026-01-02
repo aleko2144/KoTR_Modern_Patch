@@ -20,19 +20,16 @@ void WriteDebugLog(const char *text){
 	}
 }
 
-float GetPrivateProfileFloat(string selection, string varname, string default_val, string filename){
-	float to_return;
-	char* returnedString = new char[256];
-	GetPrivateProfileStringA(selection.c_str(), varname.c_str(), default_val.c_str(), returnedString, 256, filename.c_str());
-	to_return = atof(returnedString);
-	return to_return;
+float GetPrivateProfileFloat(const char* selection, const char* varname, const char* default_val, const char* filename){
+	char returnedString[256];
+	GetPrivateProfileStringA(selection, varname, default_val, returnedString, 256, filename);
+	return atof(returnedString);
 }
 
-string GetPrivateProfileStr(string selection, string varname, string default_val, string filename){
-	char* returnedString = new char[256];
-	GetPrivateProfileStringA(selection.c_str(), varname.c_str(), default_val.c_str(), returnedString, 256, filename.c_str());
-	string result = returnedString;
-	return result;
+string GetPrivateProfileStr(const char* selection, const char* varname, const char* default_val, const char* filename){
+	char returnedString[256];
+	GetPrivateProfileStringA(selection, varname, default_val, returnedString, 256, filename);
+	return returnedString;
 }
 
 DWORD *GetBlockByName(DWORD *parent, const char *name){
@@ -97,7 +94,7 @@ DWORD* SearchRESSound(char *a1){
 }
 
 void PlayWAV(DWORD* sound, float volume){
-	//если нет звука или вид снаружи
+	//РµСЃР»Рё РЅРµС‚ Р·РІСѓРєР° РёР»Рё РІРёРґ СЃРЅР°СЂСѓР¶Рё
 	if (!sound || *(int *)(*(int *)0x6D2098 + 1400)){
 		return;
 	}
@@ -159,7 +156,7 @@ int GetAITurnSignalsState(DWORD* vehicle){
 	if (!UseTurnSignals)
 		return 0;
 	
-	// -1=право, 1=лево
+	// -1=РїСЂР°РІРѕ, 1=Р»РµРІРѕ
 	float rule_rotation = *(float *)((char *)(vehicle[5400]) + 0x29E0);
 	float damage_level = *(float *)((char *)vehicle + 0x5200);
 
@@ -196,10 +193,10 @@ DWORD *m_carNodes[32767]; //9600 = 0x78 * 80
 DWORD *m_carNodes_TurnSignalsKey[32767]; //0-off, 1-R, 2-L, 3-hazard
 DWORD *m_carNodes_upgrWheelsKey[32767]; //0-std, 1-highway, 2-offroad
 DWORD *m_carNodes_upgrEngineKey[32767]; //0-std, 1-forced
-//DWORD *m_carNodes_upgrSnorkelKey[32767]; //0-off, 1-on //приводит к вылету
+//DWORD *m_carNodes_upgrSnorkelKey[32767]; //0-off, 1-on //РїСЂРёРІРѕРґРёС‚ Рє РІС‹Р»РµС‚Сѓ
 DWORD *m_carNodes_upgrLightsPrKey[32767]; //0-off, 1-on
 
-DWORD *m_TSLampKey; //указатель на TurnSignalsLampKey (для салонов)
+DWORD *m_TSLampKey; //СѓРєР°Р·Р°С‚РµР»СЊ РЅР° TurnSignalsLampKey (РґР»СЏ СЃР°Р»РѕРЅРѕРІ)
 
 void InitVehicleNodes(){
 	int currentID = 0;
@@ -228,8 +225,8 @@ void InitVehicleNodes(){
 
 	m_TSLampKey = GetBlockByName(0, "TSLampKey");
 
-	//в cabines.b3d объект refer_TSLampKey распологать после руля (чтобы лампы не светились перед рулём,
-	//если используется mat_pribor), т.к. в cabines.res прописан noz для материалов стандартных салонов
+	//РІ cabines.b3d РѕР±СЉРµРєС‚ refer_TSLampKey СЂР°СЃРїРѕР»РѕРіР°С‚СЊ РїРѕСЃР»Рµ СЂСѓР»СЏ (С‡С‚РѕР±С‹ Р»Р°РјРїС‹ РЅРµ СЃРІРµС‚РёР»РёСЃСЊ РїРµСЂРµРґ СЂСѓР»С‘Рј,
+	//РµСЃР»Рё РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ mat_pribor), С‚.Рє. РІ cabines.res РїСЂРѕРїРёСЃР°РЅ noz РґР»СЏ РјР°С‚РµСЂРёР°Р»РѕРІ СЃС‚Р°РЅРґР°СЂС‚РЅС‹С… СЃР°Р»РѕРЅРѕРІ
 }
 
 int __cdecl sub_5CB980(int a1){
@@ -242,11 +239,11 @@ int sub_57C980(__int16 a1){
 	*(__int16 *)0x67D10A = a1;
 	*(DWORD *)0x6F6640 = 0;
 
-	//вставка
+	//РІСЃС‚Р°РІРєР°
 	InitVehicleNodes();
 	//
 
-	//вставка 2
+	//РІСЃС‚Р°РІРєР° 2
 	blinker_onSound       = SearchRESSound("blinker_onSound");
 	blinker_offSound      = SearchRESSound("blinker_offSound");
 	blinker_relayOnSound  = SearchRESSound("blinker_relayOnSound");
@@ -295,8 +292,8 @@ void PrintUpgradesInfo(){
 	DWORD* vehicleCar_V = (DWORD *)(vehicle[5400]);
 	//vehicleCar_V[2446] = 3; - hi_fi
 
-	//указатели на воздуховод
-	DWORD* playerID = *(DWORD**)((char *)vehicle + 0x10 + 0x508C); //работает
+	//СѓРєР°Р·Р°С‚РµР»Рё РЅР° РІРѕР·РґСѓС…РѕРІРѕРґ
+	DWORD* playerID = *(DWORD**)((char *)vehicle + 0x10 + 0x508C); //СЂР°Р±РѕС‚Р°РµС‚
 	//cout << "playerID  =" << playerID << endl;
 
 	DWORD* ptr1 = *(DWORD**)((char *)playerID + 0x204);
@@ -384,7 +381,7 @@ void __fastcall ProcessVehicleLights(DWORD* _this, DWORD EDX){
 		is_player_vehicle = false;
 	}
 
-	//***** переключение объектов *****//
+	//***** РїРµСЂРµРєР»СЋС‡РµРЅРёРµ РѕР±СЉРµРєС‚РѕРІ *****//
 
 	DWORD* node;
 
@@ -436,7 +433,7 @@ void __fastcall ProcessVehicleLights(DWORD* _this, DWORD EDX){
 		CBlockSpace__SetOffset(node, 0);
 	}
 
-	//пропуск:
+	//РїСЂРѕРїСѓСЃРє:
 	//m_carNodes_FGL_FGR_BGL_BGRKey
 	//m_carNodes_GlowFLKey
 	//m_carNodes_GlowFRKey
@@ -451,7 +448,7 @@ void __fastcall ProcessVehicleLights(DWORD* _this, DWORD EDX){
 	}
 
 
-	//***** новые объекты *****//
+	//***** РЅРѕРІС‹Рµ РѕР±СЉРµРєС‚С‹ *****//
 
 	//*** TurnSignalsKey ***//
 	node = (DWORD*)m_carNodes_TurnSignalsKey[372 * techID];
@@ -460,14 +457,14 @@ void __fastcall ProcessVehicleLights(DWORD* _this, DWORD EDX){
 	if (is_player_vehicle){
 		CBlockSpace__SetOffset(node, TurnSignalsKey_state);
 
-		// -1=право, 1=лево
+		// -1=РїСЂР°РІРѕ, 1=Р»РµРІРѕ
 		//cout << "RuleRotation=" <<  *(float *)((char *)(vehicle[5400]) + 0x29E0) << endl;
 		//cout << "VehicleState=" << *(float *)((char *)vehicle + 0x5200) << endl;
 	} else {
-		CBlockSpace__SetOffset(node, GetAITurnSignalsState(vehicle)); //на других машинах ставить от поворота руля
+		CBlockSpace__SetOffset(node, GetAITurnSignalsState(vehicle)); //РЅР° РґСЂСѓРіРёС… РјР°С€РёРЅР°С… СЃС‚Р°РІРёС‚СЊ РѕС‚ РїРѕРІРѕСЂРѕС‚Р° СЂСѓР»СЏ
 	}
 
-	//*** улучшения ***//
+	//*** СѓР»СѓС‡С€РµРЅРёСЏ ***//
 	//wheels
 	node = (DWORD*)m_carNodes_upgrWheelsKey[372 * techID];
 	SetCaseSwitch_s(node, getUpgradeWheelsInfo(vehicle));
@@ -477,7 +474,7 @@ void __fastcall ProcessVehicleLights(DWORD* _this, DWORD EDX){
 	//lights protection
 	node = (DWORD*)m_carNodes_upgrLightsPrKey[372 * techID];
 	SetCaseSwitch_s(node, getUpgradeLightsProtectionInfo(vehicle));
-	//snorkel (вызывает вылеты?)
+	//snorkel (РІС‹Р·С‹РІР°РµС‚ РІС‹Р»РµС‚С‹?)
 	//node = (DWORD*)m_carNodes_upgrSnorkelKey[372 * techID];
 	//SetCaseSwitch_s(node, getUpgradeSnorkelInfo(vehicle));
 
@@ -559,7 +556,7 @@ void GetInput(){
 }
 
 /*void SearchSounds(){
-	//поиск звуков
+	//РїРѕРёСЃРє Р·РІСѓРєРѕРІ
 	blinker_onSound       = SearchRESSound("blinker_onSound");
 	blinker_offSound      = SearchRESSound("blinker_offSound");
 	blinker_relayOnSound  = SearchRESSound("blinker_relayOnSound");
@@ -575,7 +572,7 @@ void OnTimer(HWND hwnd, UINT msg, UINT idTimer, DWORD dwTime){
 		//TestFunction();
 		GetInput();
 		if (UseTurnSignals){
-			//салонная лампа
+			//СЃР°Р»РѕРЅРЅР°СЏ Р»Р°РјРїР°
 			SetCaseSwitch_s(m_TSLampKey, TurnSignalsKey_state);
 			ProcessTurnSignalsState();
 
@@ -584,7 +581,7 @@ void OnTimer(HWND hwnd, UINT msg, UINT idTimer, DWORD dwTime){
 			//	SearchSounds();
 			//}
 		} else {
-			SetCaseSwitch_s(m_TSLampKey, 4); //отключение отрисовки ламп в салонах
+			SetCaseSwitch_s(m_TSLampKey, 4); //РѕС‚РєР»СЋС‡РµРЅРёРµ РѕС‚СЂРёСЃРѕРІРєРё Р»Р°РјРї РІ СЃР°Р»РѕРЅР°С…
 		}
 	} else {
 		signals_time_start = GetTickCount();
@@ -594,7 +591,7 @@ void OnTimer(HWND hwnd, UINT msg, UINT idTimer, DWORD dwTime){
 void ReadConfig(){
 	//UseTurnSignals = GetPrivateProfileIntA("COMMON", "TurnSignals", 0, ".\\KoTR_VehicleMod.ini");
 
-	//может не работать из-за кодировки! жесть какая!
+	//РјРѕР¶РµС‚ РЅРµ СЂР°Р±РѕС‚Р°С‚СЊ РёР·-Р·Р° РєРѕРґРёСЂРѕРІРєРё! Р¶РµСЃС‚СЊ РєР°РєР°СЏ!
 	UseTurnSignals = GetPrivateProfileIntA("MOD", "Enabled", 0, ".\\KoTR_VehicleMod.ini");
 
 	if (UseTurnSignals)
