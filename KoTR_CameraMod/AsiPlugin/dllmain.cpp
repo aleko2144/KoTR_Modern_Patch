@@ -67,7 +67,7 @@ void ProcessCamera(){
 
 }
 
-void OnTimer(HWND hwnd,   UINT msg, UINT idTimer, DWORD dwTime) {
+void CALLBACK OnTimer(HWND hwnd,   UINT msg, UINT_PTR idTimer, DWORD dwTime) {
 	if (*(DWORD*)0x6D2098) {
 		ProcessCamera();
 	}
@@ -85,7 +85,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD fdwReason,LPVOID lpvReserved)
 			if (!mod_enabled)
 				return TRUE;
 			
-			SetTimer(0, 0, 50, (TIMERPROC)OnTimer);
+			SetTimer(0, 0, 50, OnTimer);
 			cout << "CameraMod v0.3 (04.11.2025) started." << endl;
 
 			break;
