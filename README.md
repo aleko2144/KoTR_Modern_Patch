@@ -12,6 +12,7 @@ List of plugins:
 * KoTR_TabloMod - allows to enable real-time update of the top interface panel;
 * KoTR_UpgradesMod - adds new gearboxes when an improved engine installed at a service station;
 * KoTR_VehicleMod - adds working turn signals.
+
 Extra:
 * KoTR_CabinCamFix - NOT included in Modern Patch, but fixes interiors wrong height (in Modern Patch this not fixed by plugins, but just new cab positions are set inside vehicle.tech file)
 
