@@ -18,13 +18,22 @@ void sub_595230(int *_mirrors){
 void __fastcall hook_650A28(int *_this, int* EDX){
 	DWORD temp = *(DWORD*)0x67E178;
 
+	//camera min angle when side mirrors always disable;
+	float camRotMin = 0.2;
+	//interior camera rotation
+	float cameraRot = *(float*)0x696D30;
 
-	DWORD* viewer = (DWORD*)*(DWORD*)0x6D2098;
-	int cameraRot = *(int *)((char*)viewer + 0x574);
+	if (abs(cameraRot) < camRotMin)
+		*(DWORD*)0x67E178 = 0;
+
+	//old variant - cameraRot value is integer != 0 if camera rotate key is pressed
+
+	//DWORD* viewer = (DWORD*)*(DWORD*)0x6D2098;
+	//int cameraRot = *(int *)((char*)viewer + 0x574);
 
 	//disable side mirrors processing if camera not rotated
-	if (!cameraRot)
-		*(DWORD*)0x67E178 = 0;
+	//if (!cameraRot)
+	//*(DWORD*)0x67E178 = 0;
 
 	sub_595230(_this);
 
@@ -45,7 +54,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,DWORD fdwReason,LPVOID lpvReserved)
 
 			CPatch::SetPointer(0x650A28, &hook_650A28);
 
-			cout << "MirrorsFix v0.01 (03.11.2025) started." << endl;
+			cout << "MirrorsFix v0.011 (15.01.2026) started." << endl;
 
 			break;
 		}
