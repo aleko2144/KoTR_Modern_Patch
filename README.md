@@ -1,5 +1,5 @@
 # KoTR_Modern_Patch
-King of the Road v8.2/v1.4 [patch](https://www.moddb.com/games/hard-truck-2/downloads/king-of-the-road-modern-patch) sources.
+King of the Road v8.2/v1.3 [patch](https://www.moddb.com/games/hard-truck-2/downloads/king-of-the-road-modern-patch) sources.
 
 List of plugins:
 * KoTR_CameraMod - outdated plugin that partially corrects the position of the external camera (it no longer flies away);
