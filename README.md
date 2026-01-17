@@ -1,5 +1,5 @@
 # KoTR_Modern_Patch
-King of the Road v8.2/v1.3 [patch](https://www.moddb.com/games/hard-truck-2/downloads/king-of-the-road-modern-patch) sources.
+King of the Road v8.2/v1.3 [Modern Patch v1.00](https://www.moddb.com/games/hard-truck-2/downloads/king-of-the-road-modern-patch) sources.
 
 List of plugins:
 * KoTR_CameraMod - outdated plugin that partially corrects the position of the external camera (it no longer flies away);
@@ -13,11 +13,10 @@ List of plugins:
 * KoTR_UpgradesMod - adds new gearboxes when an improved engine installed at a service station;
 * KoTR_VehicleMod - adds working turn signals.
 
-Extra:
-* KoTR_CabinCamFix - NOT included in Modern Patch, but fixes interiors wrong height (in Modern Patch this not fixed by plugins, but just new cab positions are set inside vehicle.tech file)
-
 Sources:
 * File "CPatch.h" included from [D2DInputWrapper](https://github.com/Voron295/rignroll-dinput-wrapper) by Voron295.
 * Files "detours.h", "detours.lib", "detver.h", "sigscan.h" included from [Detour](https://github.com/Zer0Mem0ry/Detour/tree/master/dll) by Zer0Mem0ry.
 * D2GIv2 sources are here: https://github.com/aleko2144/D2GI_v2
 * ModuleLoader plugin sources are here: https://github.com/aleko2144/KoTR_ASI_Plugins/tree/main/KoTR_ModuleLoader
+
+Thanks to [Silent](https://github.com/CookiePLMonster) for fixing a number of bugs of the original version!

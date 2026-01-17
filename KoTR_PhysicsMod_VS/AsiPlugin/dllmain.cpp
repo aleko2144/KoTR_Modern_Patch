@@ -295,12 +295,10 @@ CVector *__fastcall Car_V_get_unk1_Field_194(DWORD *Car_V, DWORD EDX, CVector *a
   return a2;
 }
 
-float GetPrivateProfileFloat(string selection, string varname, string default_val, string filename){
-	float to_return;
-	char* returnedString = new char[256];
-	GetPrivateProfileStringA(selection.c_str(), varname.c_str(), default_val.c_str(), returnedString, 256, filename.c_str());
-	to_return = atof(returnedString);
-	return to_return;
+float GetPrivateProfileFloat(const char* selection, const char* varname, const char* default_val, const char* filename){
+	char returnedString[256];
+	GetPrivateProfileStringA(selection, varname, default_val, returnedString, 256, filename);
+	return atof(returnedString);
 }
 
 void update_tractor_params(){
