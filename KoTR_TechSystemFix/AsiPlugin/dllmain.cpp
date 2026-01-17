@@ -22,14 +22,13 @@ void __cdecl Vehicle__SetUpgrades(int *vehicle){
 	//copy initial fuel level
 	float prevFuelLevel = Upgrade_GetCurrentValue(fuelUpgrade);
 
-	//call original function
+	//call original function - set all upgrades listed in player info
 	((void(*)(int*))0x51FF90)(vehicle);
 
 	//restore previous fuel level
 	Upgrade_SetCurrentValue(fuelUpgrade, prevFuelLevel);
 
-	float newFuelLevel = Upgrade_GetCurrentValue(fuelUpgrade);
-
+	//float newFuelLevel = Upgrade_GetCurrentValue(fuelUpgrade);
 	//cout << "vehicle=" << vehicle << endl;
 	//cout << "prev=" << prevFuelLevel << " new=" << newFuelLevel << endl;
 }
