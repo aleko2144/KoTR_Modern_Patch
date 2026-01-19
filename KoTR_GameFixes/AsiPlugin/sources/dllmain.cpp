@@ -12,7 +12,8 @@ using namespace std;
 
 bool printDebugInfo;
 void printInfo(const char* text){
-	cout << text << endl;
+	if (printDebugInfo)
+		cout << text << endl;
 }
 void displayConsole(){
 	AllocConsole();
