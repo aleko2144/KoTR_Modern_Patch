@@ -5,7 +5,7 @@ List of plugins:
 * KoTR_CameraMod - outdated plugin that partially corrects the position of the external camera (it no longer flies away);
 * KoTR_CollisionMod - an attempt to fix dynamic objects “sticking” during contacts;
 * KoTR_DustPatch - patch that fixes direction of emitted dust particles from cars;
-* KoTR_InteriorMod - allows to use the mouse to control the steering and adds the ability to remap the built-in control keys
+* KoTR_InteriorMod - adds support for new interior objects (various signal lamps, odometer, etc.);
 * KoTR_MirrorsFix - patch that hides flickering mirrors when viewed from the interior (needed when playing at 16:9);
 * KoTR_PhysicsMod - an attempt to improve the movement of road trains;
 * KoTR_RainMod - allows to enable rendering of falling raindrops when interior view enabled;
