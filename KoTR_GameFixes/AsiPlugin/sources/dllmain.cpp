@@ -1,12 +1,13 @@
 #include "dllmain.h"
 #include <Windows.h>
 #include <iostream>
-
+#include "include\Utils\CPatch.h"
 #include "include\MirrorsFix.h"
 #include "include\CollisionsFix.h"
 #include "include\ParticlesFix.h"
 #include "include\CabinCamFix.h"
 #include "include\TechSystemFix.h"
+#include "include\HorizontalRainFix.h"
 
 using namespace std;
 
@@ -62,6 +63,17 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 			if (GetPrivateProfileIntA("patches", "CabinCamFix", 0, configName)){
 				CabinCamFix::injectHooks();
 				printInfo("Interior camera patch applied.");
+			}
+
+			if (GetPrivateProfileIntA("patches", "HorizontalRainFix", 0, configName)){
+				HorizontalRainFix::injectHooks();
+				printInfo("Horizontal rain fix applied.");
+			}
+
+			/////
+			if (GetPrivateProfileIntA("patches", "NoAffinityLimit", 0, configName)){
+				CPatch::Nop(0x50C885, 15);
+				printInfo("Affinity limit disabled.");
 			}
 
 			break;
