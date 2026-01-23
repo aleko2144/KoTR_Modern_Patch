@@ -17,7 +17,7 @@ typedef struct
 
 typedef struct 
 {
-  int roadI;
+  int roadId;
   void *nodeId;
   double field_8;
   int roadSegmentVectorId;
