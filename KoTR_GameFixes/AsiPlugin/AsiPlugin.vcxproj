@@ -36,7 +36,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\dllmain.h" />
-    <ClInclude Include="sources\CPatch.h" />
     <ClInclude Include="sources\GameApp\AI.h" />
     <ClInclude Include="sources\GameApp\CarUpgrade.h" />
     <ClInclude Include="sources\GameApp\way.h" />
@@ -50,6 +49,7 @@
     <ClInclude Include="sources\Hooks\TechSystemFix.h" />
     <ClInclude Include="sources\Utils\CMatrix.h" />
     <ClInclude Include="sources\Utils\ConfigUtils.h" />
+    <ClInclude Include="sources\Utils\CPatch.h" />
     <ClInclude Include="sources\Utils\CVector.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

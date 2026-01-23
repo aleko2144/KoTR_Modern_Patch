@@ -67,9 +67,6 @@
     <ClInclude Include="sources\dllmain.h">
       <Filter>Файлы исходного кода</Filter>
     </ClInclude>
-    <ClInclude Include="sources\CPatch.h">
-      <Filter>Файлы исходного кода\Utils</Filter>
-    </ClInclude>
     <ClInclude Include="sources\Utils\CMatrix.h">
       <Filter>Файлы исходного кода\Utils</Filter>
     </ClInclude>
@@ -111,6 +108,9 @@
     </ClInclude>
     <ClInclude Include="sources\GameApp\CarUpgrade.h">
       <Filter>Файлы исходного кода\GameApp</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Utils\CPatch.h">
+      <Filter>Файлы исходного кода\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
