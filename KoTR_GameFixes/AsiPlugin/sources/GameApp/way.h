@@ -1,7 +1,7 @@
 #ifndef WAY_H
 #define WAY_H
 
-typedef struct 
+typedef struct LocalRoadParameters
 {
   int flags;
   int field_4;
@@ -13,9 +13,9 @@ typedef struct
   int field_24;
   int field_28;
   int field_2C;
-} LocalRoadParameters;
+};
 
-typedef struct 
+typedef struct PositionId
 {
   int roadId;
   void *nodeId;
@@ -24,6 +24,6 @@ typedef struct
   int roadSegmentId;
   int field_18;
   int field_1C;
-} PositionId;
+};
 
 #endif

@@ -7,8 +7,8 @@
     <LocalDebuggerAttach>true</LocalDebuggerAttach>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LocalDebuggerCommand>g:\archive\D2\d2_max_clean\king.exe</LocalDebuggerCommand>
-    <LocalDebuggerWorkingDirectory>g:\archive\D2\d2_max_clean\</LocalDebuggerWorkingDirectory>
+    <LocalDebuggerCommand>g:\d2\Projects\KoTR_82_Modern_Patch_1.03_lite\king.exe</LocalDebuggerCommand>
+    <LocalDebuggerWorkingDirectory>g:\d2\Projects\KoTR_82_Modern_Patch_1.03_lite\</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>

@@ -3,16 +3,16 @@
 
 #include <iostream>
 
-#include "include\Hooks\MirrorsFix.h"
-#include "include\Hooks\CollisionsFix.h"
-#include "include\Hooks\ParticlesFix.h"
-#include "include\Hooks\CabinCamFix.h"
-#include "include\Hooks\TechSystemFix.h"
-#include "include\Hooks\FinesCorrection.h"
-#include "include\Hooks\AICarFix.h"
+#include "Hooks\MirrorsFix.h"
+#include "Hooks\CollisionsFix.h"
+#include "Hooks\ParticlesFix.h"
+#include "Hooks\CabinCamFix.h"
+#include "Hooks\TechSystemFix.h"
+#include "Hooks\FinesCorrection.h"
+#include "Hooks\AICarFix.h"
 
-#include "include\Hooks\HorizontalRainFix.h"
-#include "include\Utils\CPatch.h"
+#include "Hooks\HorizontalRainFix.h"
+#include "Utils\CPatch.h"
 
 using namespace std;
 
@@ -47,17 +47,17 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 
 			if (GetPrivateProfileIntA("patches", "MirrorsFix", 0, configName)){
 				MirrorsFix::injectHooks();
-				printInfo("[HOOK]: injected mirror system patches");
+				printInfo("[PATCH]: injected mirror system patches");
 			}
 
 			if (GetPrivateProfileIntA("patches", "ParticlesFix", 0, configName)){
 				ParticlesFix::injectHooks();
-				printInfo("[HOOK]: injected vehicle particle patches");
+				printInfo("[PATCH]: injected vehicle particle patches");
 			}
 
 			if (GetPrivateProfileIntA("patches", "TechSystemFix", 0, configName)){
 				TechSystemFix::injectHooks();
-				printInfo("[HOOK]: injected vehicle upgrade system patches");
+				printInfo("[PATCH]: injected vehicle upgrade system patches");
 			}
 
 			if (GetPrivateProfileIntA("patches", "CollisionsFix", 0, configName)){
@@ -72,7 +72,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 
 			if (GetPrivateProfileIntA("AI_CAR", "HookEnabled", 0, configName)){
 				AICarFix::injectHooks();
-				printInfo("[HOOK]: injected AI patches");
+				printInfo("[PATCH]: injected AI patches");
 			}
 
 			if (GetPrivateProfileIntA("patches", "FinesCorrection", 0, configName)){
@@ -85,7 +85,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 			/////
 			if (GetPrivateProfileIntA("patches", "HorizontalRainFix", 0, configName)){
 				HorizontalRainFix::injectHooks();
-				printInfo("[HOOK]: applied horizontal rain fix");
+				printInfo("[PATCH]: applied horizontal rain fix");
 			}
 
 			if (GetPrivateProfileIntA("patches", "NoAffinityLimit", 0, configName)){

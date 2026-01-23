@@ -9,16 +9,13 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Файлы исходного кода\include">
-      <UniqueIdentifier>{2cd9c991-1141-41b2-9e23-274eff2d3059}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы исходного кода\include\Utils">
+    <Filter Include="Файлы исходного кода\Utils">
       <UniqueIdentifier>{519749bd-6fa7-4d91-b833-52ee26897082}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы исходного кода\include\Hooks">
+    <Filter Include="Файлы исходного кода\Hooks">
       <UniqueIdentifier>{9c229b48-52a8-4ad0-9d3a-541260709276}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы исходного кода\include\GameApp">
+    <Filter Include="Файлы исходного кода\GameApp">
       <UniqueIdentifier>{c752b82f-c02e-4aaa-a5c8-44b3eb03911b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -26,88 +23,94 @@
     <ClCompile Include="sources\dllmain.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
-    <ClCompile Include="sources\include\Utils\CMatrix.cpp">
-      <Filter>Файлы исходного кода\include\Utils</Filter>
+    <ClCompile Include="sources\Utils\CMatrix.cpp">
+      <Filter>Файлы исходного кода\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="sources\include\Utils\CVector.cpp">
-      <Filter>Файлы исходного кода\include\Utils</Filter>
+    <ClCompile Include="sources\Utils\CVector.cpp">
+      <Filter>Файлы исходного кода\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="sources\include\Utils\ConfigUtils.cpp">
-      <Filter>Файлы исходного кода\include\Utils</Filter>
+    <ClCompile Include="sources\Utils\ConfigUtils.cpp">
+      <Filter>Файлы исходного кода\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="sources\include\Hooks\AICarFix.cpp">
-      <Filter>Файлы исходного кода\include\Hooks</Filter>
+    <ClCompile Include="sources\Hooks\AICarFix.cpp">
+      <Filter>Файлы исходного кода\Hooks</Filter>
     </ClCompile>
-    <ClCompile Include="sources\include\Hooks\CabinCamFix.cpp">
-      <Filter>Файлы исходного кода\include\Hooks</Filter>
+    <ClCompile Include="sources\Hooks\CabinCamFix.cpp">
+      <Filter>Файлы исходного кода\Hooks</Filter>
     </ClCompile>
-    <ClCompile Include="sources\include\Hooks\CollisionsFix.cpp">
-      <Filter>Файлы исходного кода\include\Hooks</Filter>
+    <ClCompile Include="sources\Hooks\CollisionsFix.cpp">
+      <Filter>Файлы исходного кода\Hooks</Filter>
     </ClCompile>
-    <ClCompile Include="sources\include\Hooks\FinesCorrection.cpp">
-      <Filter>Файлы исходного кода\include\Hooks</Filter>
+    <ClCompile Include="sources\Hooks\FinesCorrection.cpp">
+      <Filter>Файлы исходного кода\Hooks</Filter>
     </ClCompile>
-    <ClCompile Include="sources\include\Hooks\HorizontalRainFix.cpp">
-      <Filter>Файлы исходного кода\include\Hooks</Filter>
+    <ClCompile Include="sources\Hooks\HorizontalRainFix.cpp">
+      <Filter>Файлы исходного кода\Hooks</Filter>
     </ClCompile>
-    <ClCompile Include="sources\include\Hooks\MirrorsFix.cpp">
-      <Filter>Файлы исходного кода\include\Hooks</Filter>
+    <ClCompile Include="sources\Hooks\MirrorsFix.cpp">
+      <Filter>Файлы исходного кода\Hooks</Filter>
     </ClCompile>
-    <ClCompile Include="sources\include\Hooks\ParticlesFix.cpp">
-      <Filter>Файлы исходного кода\include\Hooks</Filter>
+    <ClCompile Include="sources\Hooks\ParticlesFix.cpp">
+      <Filter>Файлы исходного кода\Hooks</Filter>
     </ClCompile>
-    <ClCompile Include="sources\include\Hooks\TechSystemFix.cpp">
-      <Filter>Файлы исходного кода\include\Hooks</Filter>
+    <ClCompile Include="sources\Hooks\TechSystemFix.cpp">
+      <Filter>Файлы исходного кода\Hooks</Filter>
     </ClCompile>
-    <ClCompile Include="sources\include\GameApp\AI.cpp">
-      <Filter>Файлы исходного кода\include\GameApp</Filter>
+    <ClCompile Include="sources\GameApp\AI.cpp">
+      <Filter>Файлы исходного кода\GameApp</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\GameApp\CarUpgrade.cpp">
+      <Filter>Файлы исходного кода\GameApp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\dllmain.h">
       <Filter>Файлы исходного кода</Filter>
     </ClInclude>
-    <ClInclude Include="sources\include\CPatch.h">
-      <Filter>Файлы исходного кода\include\Utils</Filter>
+    <ClInclude Include="sources\CPatch.h">
+      <Filter>Файлы исходного кода\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="sources\include\Utils\CMatrix.h">
-      <Filter>Файлы исходного кода\include\Utils</Filter>
+    <ClInclude Include="sources\Utils\CMatrix.h">
+      <Filter>Файлы исходного кода\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="sources\include\Utils\CVector.h">
-      <Filter>Файлы исходного кода\include\Utils</Filter>
+    <ClInclude Include="sources\Utils\CVector.h">
+      <Filter>Файлы исходного кода\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="sources\include\Utils\ConfigUtils.h">
-      <Filter>Файлы исходного кода\include\Utils</Filter>
+    <ClInclude Include="sources\Utils\ConfigUtils.h">
+      <Filter>Файлы исходного кода\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="sources\include\Hooks\AICarFix.h">
-      <Filter>Файлы исходного кода\include\Hooks</Filter>
+    <ClInclude Include="sources\Hooks\AICarFix.h">
+      <Filter>Файлы исходного кода\Hooks</Filter>
     </ClInclude>
-    <ClInclude Include="sources\include\Hooks\CabinCamFix.h">
-      <Filter>Файлы исходного кода\include\Hooks</Filter>
+    <ClInclude Include="sources\Hooks\CabinCamFix.h">
+      <Filter>Файлы исходного кода\Hooks</Filter>
     </ClInclude>
-    <ClInclude Include="sources\include\Hooks\CollisionsFix.h">
-      <Filter>Файлы исходного кода\include\Hooks</Filter>
+    <ClInclude Include="sources\Hooks\CollisionsFix.h">
+      <Filter>Файлы исходного кода\Hooks</Filter>
     </ClInclude>
-    <ClInclude Include="sources\include\Hooks\FinesCorrection.h">
-      <Filter>Файлы исходного кода\include\Hooks</Filter>
+    <ClInclude Include="sources\Hooks\FinesCorrection.h">
+      <Filter>Файлы исходного кода\Hooks</Filter>
     </ClInclude>
-    <ClInclude Include="sources\include\Hooks\HorizontalRainFix.h">
-      <Filter>Файлы исходного кода\include\Hooks</Filter>
+    <ClInclude Include="sources\Hooks\HorizontalRainFix.h">
+      <Filter>Файлы исходного кода\Hooks</Filter>
     </ClInclude>
-    <ClInclude Include="sources\include\Hooks\MirrorsFix.h">
-      <Filter>Файлы исходного кода\include\Hooks</Filter>
+    <ClInclude Include="sources\Hooks\MirrorsFix.h">
+      <Filter>Файлы исходного кода\Hooks</Filter>
     </ClInclude>
-    <ClInclude Include="sources\include\Hooks\ParticlesFix.h">
-      <Filter>Файлы исходного кода\include\Hooks</Filter>
+    <ClInclude Include="sources\Hooks\ParticlesFix.h">
+      <Filter>Файлы исходного кода\Hooks</Filter>
     </ClInclude>
-    <ClInclude Include="sources\include\Hooks\TechSystemFix.h">
-      <Filter>Файлы исходного кода\include\Hooks</Filter>
+    <ClInclude Include="sources\Hooks\TechSystemFix.h">
+      <Filter>Файлы исходного кода\Hooks</Filter>
     </ClInclude>
-    <ClInclude Include="sources\include\GameApp\way.h">
-      <Filter>Файлы исходного кода\include\GameApp</Filter>
+    <ClInclude Include="sources\GameApp\way.h">
+      <Filter>Файлы исходного кода\GameApp</Filter>
     </ClInclude>
-    <ClInclude Include="sources\include\GameApp\AI.h">
-      <Filter>Файлы исходного кода\include\GameApp</Filter>
+    <ClInclude Include="sources\GameApp\AI.h">
+      <Filter>Файлы исходного кода\GameApp</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\GameApp\CarUpgrade.h">
+      <Filter>Файлы исходного кода\GameApp</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
