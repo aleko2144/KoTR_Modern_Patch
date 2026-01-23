@@ -1,13 +1,18 @@
 #include "dllmain.h"
 #include <Windows.h>
+
 #include <iostream>
+
+#include "include\Hooks\MirrorsFix.h"
+#include "include\Hooks\CollisionsFix.h"
+#include "include\Hooks\ParticlesFix.h"
+#include "include\Hooks\CabinCamFix.h"
+#include "include\Hooks\TechSystemFix.h"
+#include "include\Hooks\FinesCorrection.h"
+#include "include\Hooks\AICarFix.h"
+
+#include "include\Hooks\HorizontalRainFix.h"
 #include "include\Utils\CPatch.h"
-#include "include\MirrorsFix.h"
-#include "include\CollisionsFix.h"
-#include "include\ParticlesFix.h"
-#include "include\CabinCamFix.h"
-#include "include\TechSystemFix.h"
-#include "include\HorizontalRainFix.h"
 
 using namespace std;
 
@@ -42,39 +47,52 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 
 			if (GetPrivateProfileIntA("patches", "MirrorsFix", 0, configName)){
 				MirrorsFix::injectHooks();
-				printInfo("Injected mirrors fix hooks.");
+				printInfo("[HOOK]: injected mirror system patches");
 			}
 
 			if (GetPrivateProfileIntA("patches", "ParticlesFix", 0, configName)){
 				ParticlesFix::injectHooks();
-				printInfo("Injected vehicle particles fix hooks.");
+				printInfo("[HOOK]: injected vehicle particle patches");
 			}
 
 			if (GetPrivateProfileIntA("patches", "TechSystemFix", 0, configName)){
 				TechSystemFix::injectHooks();
-				printInfo("Injected vehicle upgrade system hooks.");
+				printInfo("[HOOK]: injected vehicle upgrade system patches");
 			}
 
 			if (GetPrivateProfileIntA("patches", "CollisionsFix", 0, configName)){
 				CollisionsFix::injectHooks();
-				printInfo("Collision tweaks applied.");
+				printInfo("[PATCH]: applied collision corrections");
 			}
 
 			if (GetPrivateProfileIntA("patches", "CabinCamFix", 0, configName)){
 				CabinCamFix::injectHooks();
-				printInfo("Interior camera patch applied.");
+				printInfo("[PATCH]: applied interior camera tweaks");
 			}
 
-			if (GetPrivateProfileIntA("patches", "HorizontalRainFix", 0, configName)){
-				HorizontalRainFix::injectHooks();
-				printInfo("Horizontal rain fix applied.");
+			if (GetPrivateProfileIntA("AI_CAR", "HookEnabled", 0, configName)){
+				AICarFix::injectHooks();
+				printInfo("[HOOK]: injected AI patches");
 			}
+
+			if (GetPrivateProfileIntA("patches", "FinesCorrection", 0, configName)){
+				FinesCorrection::injectHooks();
+				printInfo("[PATCH]: applied fines corrections");
+			}
+
+			//445AF4 infinity loop if trailer detached on mafia attack???
 
 			/////
+			if (GetPrivateProfileIntA("patches", "HorizontalRainFix", 0, configName)){
+				HorizontalRainFix::injectHooks();
+				printInfo("[HOOK]: applied horizontal rain fix");
+			}
+
 			if (GetPrivateProfileIntA("patches", "NoAffinityLimit", 0, configName)){
 				CPatch::Nop(0x50C885, 15);
-				printInfo("Affinity limit disabled.");
+				printInfo("[PATCH]: affinity limit disabled");
 			}
+			/////
 
 			break;
 		}

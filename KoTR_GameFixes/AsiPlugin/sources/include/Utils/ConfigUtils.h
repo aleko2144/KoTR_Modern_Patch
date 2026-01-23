@@ -2,5 +2,6 @@
 #define CONFIG_UTILS_H
 
 float GetPrivateProfileFloat(char* selection, char* variableName, char* defaultValue, char* filename);
+double GetPrivateProfileDouble(char* selection, char* variableName, char* defaultValue, char* filename);
 
 #endif

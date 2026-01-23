@@ -20,23 +20,32 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sources\dllmain.cpp" />
-    <ClCompile Include="sources\include\CabinCamFix.cpp" />
-    <ClCompile Include="sources\include\CollisionsFix.cpp" />
-    <ClCompile Include="sources\include\MirrorsFix.cpp" />
-    <ClCompile Include="sources\include\ParticlesFix.cpp" />
-    <ClCompile Include="sources\include\TechSystemFix.cpp" />
+    <ClCompile Include="sources\include\GameApp\AI.cpp" />
+    <ClCompile Include="sources\include\Hooks\AICarFix.cpp" />
+    <ClCompile Include="sources\include\Hooks\CabinCamFix.cpp" />
+    <ClCompile Include="sources\include\Hooks\CollisionsFix.cpp" />
+    <ClCompile Include="sources\include\Hooks\FinesCorrection.cpp" />
+    <ClCompile Include="sources\include\Hooks\HorizontalRainFix.cpp" />
+    <ClCompile Include="sources\include\Hooks\MirrorsFix.cpp" />
+    <ClCompile Include="sources\include\Hooks\ParticlesFix.cpp" />
+    <ClCompile Include="sources\include\Hooks\TechSystemFix.cpp" />
     <ClCompile Include="sources\include\Utils\CMatrix.cpp" />
     <ClCompile Include="sources\include\Utils\ConfigUtils.cpp" />
     <ClCompile Include="sources\include\Utils\CVector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\dllmain.h" />
-    <ClInclude Include="sources\include\CabinCamFix.h" />
-    <ClInclude Include="sources\include\CollisionsFix.h" />
     <ClInclude Include="sources\include\CPatch.h" />
-    <ClInclude Include="sources\include\MirrorsFix.h" />
-    <ClInclude Include="sources\include\ParticlesFix.h" />
-    <ClInclude Include="sources\include\TechSystemFix.h" />
+    <ClInclude Include="sources\include\GameApp\AI.h" />
+    <ClInclude Include="sources\include\GameApp\way.h" />
+    <ClInclude Include="sources\include\Hooks\AICarFix.h" />
+    <ClInclude Include="sources\include\Hooks\CabinCamFix.h" />
+    <ClInclude Include="sources\include\Hooks\CollisionsFix.h" />
+    <ClInclude Include="sources\include\Hooks\FinesCorrection.h" />
+    <ClInclude Include="sources\include\Hooks\HorizontalRainFix.h" />
+    <ClInclude Include="sources\include\Hooks\MirrorsFix.h" />
+    <ClInclude Include="sources\include\Hooks\ParticlesFix.h" />
+    <ClInclude Include="sources\include\Hooks\TechSystemFix.h" />
     <ClInclude Include="sources\include\Utils\CMatrix.h" />
     <ClInclude Include="sources\include\Utils\ConfigUtils.h" />
     <ClInclude Include="sources\include\Utils\CVector.h" />
