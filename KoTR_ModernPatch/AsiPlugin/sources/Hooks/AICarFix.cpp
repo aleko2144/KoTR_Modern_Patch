@@ -20,21 +20,21 @@ bool __cdecl OnCall4CFD50(int *playerID){
 	bool result = sub_4CFD50(playerID);
 
 	if (result){
-		//1. получаем PositionId текущего водителя
+		//1. РїРѕР»СѓС‡Р°РµРј PositionId С‚РµРєСѓС‰РµРіРѕ РІРѕРґРёС‚РµР»СЏ
 		//1. getting player position ID
 		getPlayerPositionId(&posId, playerID);
 
-		//2. получаем параметры дороги по PositionId
+		//2. РїРѕР»СѓС‡Р°РµРј РїР°СЂР°РјРµС‚СЂС‹ РґРѕСЂРѕРіРё РїРѕ PositionId
 		//2. getting road parameters by position ID
 		getRoadParameters(posId, &roadParams);
 
-		//3. если дорога узкая (2-х полоска), то меняем параметры
+		//3. РµСЃР»Рё РґРѕСЂРѕРіР° СѓР·РєР°СЏ (2-С… РїРѕР»РѕСЃРєР°), С‚Рѕ РјРµРЅСЏРµРј РїР°СЂР°РјРµС‚СЂС‹
 		//3. if road is narrow (2 lanes or less) then change values
 		if (roadParams.roadWidth < max_wdth){
 			dbl_dist = new_dist;
 			dbl_incr = new_incr;
 		} else {
-			//если нет, возвращаем параметры по умолчанию
+			//РµСЃР»Рё РЅРµС‚, РІРѕР·РІСЂР°С‰Р°РµРј РїР°СЂР°РјРµС‚СЂС‹ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 			//default values
 			dbl_dist = 150.0;
 			dbl_incr = 30.0;
@@ -47,7 +47,7 @@ bool __cdecl OnCall4CFD50(int *playerID){
 }
 
 
-//в общем, на узких дорогах надо ограничивать зону сканирования препятствий соседней полосой, чтобы AI-машина не могла видеть встречное движение
+//РІ РѕР±С‰РµРј, РЅР° СѓР·РєРёС… РґРѕСЂРѕРіР°С… РЅР°РґРѕ РѕРіСЂР°РЅРёС‡РёРІР°С‚СЊ Р·РѕРЅСѓ СЃРєР°РЅРёСЂРѕРІР°РЅРёСЏ РїСЂРµРїСЏС‚СЃС‚РІРёР№ СЃРѕСЃРµРґРЅРµР№ РїРѕР»РѕСЃРѕР№, С‡С‚РѕР±С‹ AI-РјР°С€РёРЅР° РЅРµ РјРѕРіР»Р° РІРёРґРµС‚СЊ РІСЃС‚СЂРµС‡РЅРѕРµ РґРІРёР¶РµРЅРёРµ
 void AICarFix::injectHooks(){
 	new_dist = GetPrivateProfileDouble("AI_CAR", "loop_dist", "150.0", ".\\KoTR_ModernPatch.ini");
 	new_incr = GetPrivateProfileDouble("AI_CAR", "loop_incr", "30.0",  ".\\KoTR_ModernPatch.ini");
