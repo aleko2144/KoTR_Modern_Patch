@@ -79,8 +79,8 @@ bool __fastcall OnCallProcessRoadtrainMovement(int *tractor){
 //All this "fixes" working bad at low FPS.
 
 void STrailersPhysFix::injectHooks(){
-	//Изначально сделано осенью-зимой 2025-го в рамках попытки сделать патч к игре только редактированием exe-файла, в итоге забросил этот проект,
-	//так как редактированием лишь существующего кода игру полностью не поправить, а добавлять полностью новый код в уже откомпилированный exe - для меня это слишком)
+	//РР·РЅР°С‡Р°Р»СЊРЅРѕ СЃРґРµР»Р°РЅРѕ РѕСЃРµРЅСЊСЋ-Р·РёРјРѕР№ 2025-РіРѕ РІ СЂР°РјРєР°С… РїРѕРїС‹С‚РєРё СЃРґРµР»Р°С‚СЊ РїР°С‚С‡ Рє РёРіСЂРµ С‚РѕР»СЊРєРѕ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµРј exe-С„Р°Р№Р»Р°, РІ РёС‚РѕРіРµ Р·Р°Р±СЂРѕСЃРёР» СЌС‚РѕС‚ РїСЂРѕРµРєС‚,
+	//С‚Р°Рє РєР°Рє СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёРµРј Р»РёС€СЊ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРіРѕ РєРѕРґР° РёРіСЂСѓ РїРѕР»РЅРѕСЃС‚СЊСЋ РЅРµ РїРѕРїСЂР°РІРёС‚СЊ, Р° РґРѕР±Р°РІР»СЏС‚СЊ РїРѕР»РЅРѕСЃС‚СЊСЋ РЅРѕРІС‹Р№ РєРѕРґ РІ СѓР¶Рµ РѕС‚РєРѕРјРїРёР»РёСЂРѕРІР°РЅРЅС‹Р№ exe - РґР»СЏ РјРµРЅСЏ СЌС‚Рѕ СЃР»РёС€РєРѕРј)
 	//
 	//Originally made in the november-december of 2025 as part of an attempt to make a patch for the game using only editing the .exe file, I eventually abandoned this project,
 	//since editing only the existing code alone won't completely fix the game, and adding completely new code to an already compiled .exe is too much for me :)
