@@ -62,6 +62,15 @@
     <ClCompile Include="sources\GameApp\CarUpgrade.cpp">
       <Filter>Файлы исходного кода\GameApp</Filter>
     </ClCompile>
+    <ClCompile Include="sources\Hooks\STrailersPhysFix.cpp">
+      <Filter>Файлы исходного кода\Hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\GameApp\Car_V.cpp">
+      <Filter>Файлы исходного кода\GameApp</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\GameApp\Vehicle.cpp">
+      <Filter>Файлы исходного кода\GameApp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\dllmain.h">
@@ -111,6 +120,15 @@
     </ClInclude>
     <ClInclude Include="sources\Utils\CPatch.h">
       <Filter>Файлы исходного кода\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Hooks\STrailersPhysFix.h">
+      <Filter>Файлы исходного кода\Hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\GameApp\Car_V.h">
+      <Filter>Файлы исходного кода\GameApp</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\GameApp\Vehicle.h">
+      <Filter>Файлы исходного кода\GameApp</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

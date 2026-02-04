@@ -10,6 +10,7 @@
 #include "Hooks\TechSystemFix.h"
 #include "Hooks\FinesCorrection.h"
 #include "Hooks\AICarFix.h"
+#include "Hooks\STrailersPhysFix.h"
 
 #include "Hooks\HorizontalRainFix.h"
 #include "Utils\CPatch.h"
@@ -75,12 +76,17 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 				printInfo("[PATCH]: injected AI patches");
 			}
 
-			if (GetPrivateProfileIntA("patches", "FinesCorrection", 0, configName)){
-				FinesCorrection::injectHooks();
-				printInfo("[PATCH]: applied fines corrections");
+			//if (GetPrivateProfileIntA("patches", "FinesCorrection", 0, configName)){
+			//	FinesCorrection::injectHooks();
+			//	printInfo("[PATCH]: applied fines corrections");
+			//}
+
+			if (GetPrivateProfileIntA("patches", "STrailersPhysCorrection", 0, configName)){
+				STrailersPhysFix::injectHooks();
+				printInfo("[PATCH]: applied roadtrain physics behaviour patches");
 			}
 
-			//445AF4 infinity loop if trailer detached on mafia attack???
+			//445AF4 infinity loop if trailer detached on mafia attack???//
 
 			/////
 			if (GetPrivateProfileIntA("patches", "HorizontalRainFix", 0, configName)){

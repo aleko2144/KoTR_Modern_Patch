@@ -38,6 +38,10 @@ public:
 		temp = (int)func - ((int)address + 5);
 		Patch((void *)((int)address + 1), &temp, 4);
 	}
+	inline static void SetBytes(int address, void* value, int size)
+	{
+		Patch((void *)address, value, size);
+	}
 	inline static void SetChar(int address, char value)
 	{
 		Patch((void *)address, &value, 1);

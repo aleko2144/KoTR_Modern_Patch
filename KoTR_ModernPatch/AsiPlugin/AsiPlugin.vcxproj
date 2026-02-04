@@ -22,6 +22,8 @@
     <ClCompile Include="sources\dllmain.cpp" />
     <ClCompile Include="sources\GameApp\AI.cpp" />
     <ClCompile Include="sources\GameApp\CarUpgrade.cpp" />
+    <ClCompile Include="sources\GameApp\Car_V.cpp" />
+    <ClCompile Include="sources\GameApp\Vehicle.cpp" />
     <ClCompile Include="sources\Hooks\AICarFix.cpp" />
     <ClCompile Include="sources\Hooks\CabinCamFix.cpp" />
     <ClCompile Include="sources\Hooks\CollisionsFix.cpp" />
@@ -29,6 +31,7 @@
     <ClCompile Include="sources\Hooks\HorizontalRainFix.cpp" />
     <ClCompile Include="sources\Hooks\MirrorsFix.cpp" />
     <ClCompile Include="sources\Hooks\ParticlesFix.cpp" />
+    <ClCompile Include="sources\Hooks\STrailersPhysFix.cpp" />
     <ClCompile Include="sources\Hooks\TechSystemFix.cpp" />
     <ClCompile Include="sources\Utils\CMatrix.cpp" />
     <ClCompile Include="sources\Utils\ConfigUtils.cpp" />
@@ -38,6 +41,8 @@
     <ClInclude Include="sources\dllmain.h" />
     <ClInclude Include="sources\GameApp\AI.h" />
     <ClInclude Include="sources\GameApp\CarUpgrade.h" />
+    <ClInclude Include="sources\GameApp\Car_V.h" />
+    <ClInclude Include="sources\GameApp\Vehicle.h" />
     <ClInclude Include="sources\GameApp\way.h" />
     <ClInclude Include="sources\Hooks\AICarFix.h" />
     <ClInclude Include="sources\Hooks\CabinCamFix.h" />
@@ -46,6 +51,7 @@
     <ClInclude Include="sources\Hooks\HorizontalRainFix.h" />
     <ClInclude Include="sources\Hooks\MirrorsFix.h" />
     <ClInclude Include="sources\Hooks\ParticlesFix.h" />
+    <ClInclude Include="sources\Hooks\STrailersPhysFix.h" />
     <ClInclude Include="sources\Hooks\TechSystemFix.h" />
     <ClInclude Include="sources\Utils\CMatrix.h" />
     <ClInclude Include="sources\Utils\ConfigUtils.h" />
