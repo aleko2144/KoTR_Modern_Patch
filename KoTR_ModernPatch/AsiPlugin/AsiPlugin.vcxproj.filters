@@ -18,6 +18,9 @@
     <Filter Include="Файлы исходного кода\GameApp">
       <UniqueIdentifier>{c752b82f-c02e-4aaa-a5c8-44b3eb03911b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы исходного кода\Utils\ModUtils">
+      <UniqueIdentifier>{2f16d4b0-f95c-4ff4-8bb8-ea2546e4fb58}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sources\dllmain.cpp">
@@ -70,6 +73,12 @@
     </ClCompile>
     <ClCompile Include="sources\GameApp\Vehicle.cpp">
       <Filter>Файлы исходного кода\GameApp</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Hooks\QueueSortingFix.cpp">
+      <Filter>Файлы исходного кода\Hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Utils\ModUtils\Patterns.cpp">
+      <Filter>Файлы исходного кода\Utils\ModUtils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -129,6 +138,24 @@
     </ClInclude>
     <ClInclude Include="sources\GameApp\Vehicle.h">
       <Filter>Файлы исходного кода\GameApp</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Hooks\QueueSortingFix.h">
+      <Filter>Файлы исходного кода\Hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\GameApp\IntrusiveQueue.h">
+      <Filter>Файлы исходного кода\GameApp</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Utils\ModUtils\MemoryMgr.h">
+      <Filter>Файлы исходного кода\Utils\ModUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Utils\ModUtils\Patterns.h">
+      <Filter>Файлы исходного кода\Utils\ModUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Utils\ModUtils\Facade.hpp">
+      <Filter>Файлы исходного кода\Utils\ModUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Utils\ModUtils\HookEach.hpp">
+      <Filter>Файлы исходного кода\Utils\ModUtils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

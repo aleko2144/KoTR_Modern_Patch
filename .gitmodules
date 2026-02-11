@@ -1,0 +1,4 @@
+[submodule "KoTR_ModernPatch/AsiPlugin/sources/Utils/ModUtils"]
+	path = KoTR_ModernPatch/AsiPlugin/sources/Utils/ModUtils
+	url = https://github.com/CookiePLMonster/ModUtils
+	branch = master
