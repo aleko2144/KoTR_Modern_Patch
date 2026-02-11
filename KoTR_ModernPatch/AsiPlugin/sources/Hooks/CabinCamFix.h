@@ -2,7 +2,7 @@
 #define CABIN_CAM_FIX_H
 
 namespace CabinCamFix {
-	void injectHooks();
+	bool injectHooks();
 }
 
 #endif

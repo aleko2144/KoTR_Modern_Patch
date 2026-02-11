@@ -68,8 +68,9 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 			}
 
 			if (GetPrivateProfileIntA("patches", "CabinCamFix", 0, configName)){
-				CabinCamFix::injectHooks();
-				printInfo("[PATCH]: applied interior camera tweaks");
+				if (CabinCamFix::injectHooks()) {
+					printInfo("[PATCH]: applied interior camera tweaks");
+				}
 			}
 
 			if (GetPrivateProfileIntA("AI_CAR", "HookEnabled", 0, configName)){
