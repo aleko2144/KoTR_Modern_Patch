@@ -31,17 +31,20 @@
     <ClCompile Include="sources\Hooks\HorizontalRainFix.cpp" />
     <ClCompile Include="sources\Hooks\MirrorsFix.cpp" />
     <ClCompile Include="sources\Hooks\ParticlesFix.cpp" />
+    <ClCompile Include="sources\Hooks\QueueSortingFix.cpp" />
     <ClCompile Include="sources\Hooks\STrailersPhysFix.cpp" />
     <ClCompile Include="sources\Hooks\TechSystemFix.cpp" />
     <ClCompile Include="sources\Utils\CMatrix.cpp" />
     <ClCompile Include="sources\Utils\ConfigUtils.cpp" />
     <ClCompile Include="sources\Utils\CVector.cpp" />
+    <ClCompile Include="sources\Utils\ModUtils\Patterns.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\dllmain.h" />
     <ClInclude Include="sources\GameApp\AI.h" />
     <ClInclude Include="sources\GameApp\CarUpgrade.h" />
     <ClInclude Include="sources\GameApp\Car_V.h" />
+    <ClInclude Include="sources\GameApp\IntrusiveQueue.h" />
     <ClInclude Include="sources\GameApp\Vehicle.h" />
     <ClInclude Include="sources\GameApp\way.h" />
     <ClInclude Include="sources\Hooks\AICarFix.h" />
@@ -51,12 +54,17 @@
     <ClInclude Include="sources\Hooks\HorizontalRainFix.h" />
     <ClInclude Include="sources\Hooks\MirrorsFix.h" />
     <ClInclude Include="sources\Hooks\ParticlesFix.h" />
+    <ClInclude Include="sources\Hooks\QueueSortingFix.h" />
     <ClInclude Include="sources\Hooks\STrailersPhysFix.h" />
     <ClInclude Include="sources\Hooks\TechSystemFix.h" />
     <ClInclude Include="sources\Utils\CMatrix.h" />
     <ClInclude Include="sources\Utils\ConfigUtils.h" />
     <ClInclude Include="sources\Utils\CPatch.h" />
     <ClInclude Include="sources\Utils\CVector.h" />
+    <ClInclude Include="sources\Utils\ModUtils\Facade.hpp" />
+    <ClInclude Include="sources\Utils\ModUtils\HookEach.hpp" />
+    <ClInclude Include="sources\Utils\ModUtils\MemoryMgr.h" />
+    <ClInclude Include="sources\Utils\ModUtils\Patterns.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D050F9D9-613C-4C51-8CEE-9AF4021F1EA2}</ProjectGuid>

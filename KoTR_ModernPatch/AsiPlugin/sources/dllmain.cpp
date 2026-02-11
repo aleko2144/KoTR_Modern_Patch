@@ -11,6 +11,7 @@
 #include "Hooks\FinesCorrection.h"
 #include "Hooks\AICarFix.h"
 #include "Hooks\STrailersPhysFix.h"
+#include "Hooks\QueueSortingFix.h"
 
 #include "Hooks\HorizontalRainFix.h"
 #include "Utils\CPatch.h"
@@ -94,6 +95,12 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 				printInfo("[PATCH]: applied horizontal rain fix");
 			}
 
+			if (GetPrivateProfileIntA("patches", "QueueSortingFix", 0, configName)){
+				if (QueueSortingFix::injectHooks()) {
+					printInfo("[PATCH]: applied queue sorting fixes");
+				}
+			}
+
 			if (GetPrivateProfileIntA("patches", "NoAffinityLimit", 0, configName)){
 				CPatch::Nop(0x50C885, 15);
 				printInfo("[PATCH]: affinity limit disabled");
@@ -102,18 +109,8 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 
 			break;
 		}
-		case DLL_PROCESS_DETACH:
-		{
+		default:
 			break;
-		}
-		case DLL_THREAD_ATTACH:
-		{
-			break;
-		}
-		case DLL_THREAD_DETACH:
-		{
-			break;
-		}
 	}
 
 	return TRUE;
