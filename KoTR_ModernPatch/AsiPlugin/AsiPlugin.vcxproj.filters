@@ -80,6 +80,9 @@
     <ClCompile Include="sources\Utils\ModUtils\Patterns.cpp">
       <Filter>Файлы исходного кода\Utils\ModUtils</Filter>
     </ClCompile>
+    <ClCompile Include="sources\Hooks\ExtCameraFix.cpp">
+      <Filter>Файлы исходного кода\Hooks</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\dllmain.h">
@@ -156,6 +159,9 @@
     </ClInclude>
     <ClInclude Include="sources\Utils\ModUtils\HookEach.hpp">
       <Filter>Файлы исходного кода\Utils\ModUtils</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Hooks\ExtCameraFix.h">
+      <Filter>Файлы исходного кода\Hooks</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

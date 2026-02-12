@@ -27,6 +27,7 @@
     <ClCompile Include="sources\Hooks\AICarFix.cpp" />
     <ClCompile Include="sources\Hooks\CabinCamFix.cpp" />
     <ClCompile Include="sources\Hooks\CollisionsFix.cpp" />
+    <ClCompile Include="sources\Hooks\ExtCameraFix.cpp" />
     <ClCompile Include="sources\Hooks\FinesCorrection.cpp" />
     <ClCompile Include="sources\Hooks\HorizontalRainFix.cpp" />
     <ClCompile Include="sources\Hooks\MirrorsFix.cpp" />
@@ -50,6 +51,7 @@
     <ClInclude Include="sources\Hooks\AICarFix.h" />
     <ClInclude Include="sources\Hooks\CabinCamFix.h" />
     <ClInclude Include="sources\Hooks\CollisionsFix.h" />
+    <ClInclude Include="sources\Hooks\ExtCameraFix.h" />
     <ClInclude Include="sources\Hooks\FinesCorrection.h" />
     <ClInclude Include="sources\Hooks\HorizontalRainFix.h" />
     <ClInclude Include="sources\Hooks\MirrorsFix.h" />
