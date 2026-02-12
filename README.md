@@ -6,6 +6,7 @@ List of plugins:
 * KoTR_ModernPatch - the core of the patch contains all the fixes:
   * AICarFix - an attempt to correct the behavior of AI cars;
   * CabinCamFix - fixes interiors wrong height;
+  * ExtCameraFix - adjusts the parameters of the external camera (it no longer flies away);
   * CollisionsFix - an attempt to fix dynamic objects “sticking” during contacts;
   * ParticlesFix - fixes direction of emitted dust particles from cars;
   * MirrorsFix - solves mirror render problems when playing at 16:9;

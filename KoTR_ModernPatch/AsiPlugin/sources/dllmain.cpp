@@ -12,6 +12,7 @@
 #include "Hooks\AICarFix.h"
 #include "Hooks\STrailersPhysFix.h"
 #include "Hooks\QueueSortingFix.h"
+#include "Hooks\ExtCameraFix.h"
 
 #include "Hooks\HorizontalRainFix.h"
 #include "Utils\CPatch.h"
@@ -90,10 +91,9 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 
 			//445AF4 infinity loop if trailer detached on mafia attack???//
 
-			/////
-			if (GetPrivateProfileIntA("patches", "HorizontalRainFix", 0, configName)){
-				HorizontalRainFix::injectHooks();
-				printInfo("[PATCH]: applied horizontal rain fix");
+			if (GetPrivateProfileIntA("EXT_CAMERA", "HookEnabled", 0, configName)) {
+				ExtCameraFix::injectHooks();
+				printInfo("[PATCH]: applied camera tweaks");
 			}
 
 			if (GetPrivateProfileIntA("patches", "QueueSortingFix", 0, configName)){
@@ -102,10 +102,17 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 				}
 			}
 
-			if (GetPrivateProfileIntA("patches", "NoAffinityLimit", 0, configName)){
-				CPatch::Nop(0x50C885, 15);
-				printInfo("[PATCH]: affinity limit disabled");
-			}
+			//rain fix and affinity limit disable now exists in the D2GI
+			//
+			//if (GetPrivateProfileIntA("patches", "HorizontalRainFix", 0, configName)){
+			//	HorizontalRainFix::injectHooks();
+			//	printInfo("[PATCH]: applied horizontal rain fix");
+			//}
+
+			//if (GetPrivateProfileIntA("patches", "NoAffinityLimit", 0, configName)){
+			//	CPatch::Nop(0x50C885, 15);
+			//	printInfo("[PATCH]: affinity limit disabled");
+			//}
 			/////
 
 			break;
