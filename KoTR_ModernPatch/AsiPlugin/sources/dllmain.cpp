@@ -3,9 +3,10 @@
 
 #include <iostream>
 
+//patches
 #include "Hooks\MirrorsFix.h"
 #include "Hooks\CollisionsFix.h"
-#include "Hooks\ParticlesFix.h"
+#include "Hooks\DustParticlesFix.h"
 #include "Hooks\CabinCamFix.h"
 #include "Hooks\TechSystemFix.h"
 #include "Hooks\FinesCorrection.h"
@@ -13,9 +14,14 @@
 #include "Hooks\STrailersPhysFix.h"
 #include "Hooks\QueueSortingFix.h"
 #include "Hooks\ExtCameraFix.h"
+//
 
-#include "Hooks\HorizontalRainFix.h"
-#include "Utils\CPatch.h"
+//#include "Hooks\HorizontalRainFix.h"
+//#include "Utils\CPatch.h"
+
+//mods
+#include "Mods\HT2EffectsMod.h"
+//
 
 using namespace std;
 
@@ -53,9 +59,9 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 				printInfo("[PATCH]: injected mirror system patches");
 			}
 
-			if (GetPrivateProfileIntA("patches", "ParticlesFix", 0, configName)){
-				ParticlesFix::injectHooks();
-				printInfo("[PATCH]: injected vehicle particle patches");
+			if (GetPrivateProfileIntA("patches", "DustParticlesFix", 0, configName)){
+				DustParticlesFix::injectHooks();
+				printInfo("[PATCH]: injected dust particle patches");
 			}
 
 			if (GetPrivateProfileIntA("patches", "TechSystemFix", 0, configName)){
@@ -102,6 +108,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 				}
 			}
 
+			/////
 			//rain fix and affinity limit disable now exists in the D2GI
 			//
 			//if (GetPrivateProfileIntA("patches", "HorizontalRainFix", 0, configName)){
@@ -114,6 +121,11 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 			//	printInfo("[PATCH]: affinity limit disabled");
 			//}
 			/////
+
+			if (GetPrivateProfileIntA("mods", "HT2Effects", 0, configName)) {
+				HT2EffectsMod::injectHooks();
+				printInfo("[MOD]: loaded HTruck 2 effects");
+			}
 
 			break;
 		}

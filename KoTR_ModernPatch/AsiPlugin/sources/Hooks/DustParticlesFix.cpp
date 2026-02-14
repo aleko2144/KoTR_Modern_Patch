@@ -1,15 +1,13 @@
-#include "ParticlesFix.h"
+#include "DustParticlesFix.h"
 #include "..\Utils\CPatch.h"
 #include "..\Utils\CVector.h"
 #include "..\Utils\CMatrix.h"
 
+#include "..\GameApp\Particles.h"
+
 bool call_dust_emitters = false;
 
-void __cdecl emitDustParticles(float* position, float* direction, float a3){
-	typedef void (__cdecl * emitDustParticles)(float* position, float* direction, float a3);
-	return emitDustParticles(0x4BB1B0)(position, direction, a3);
-}
-
+//TO DO: rewrite this function
 void processDustParticles(int* vehicle, bool emitFromCenterOnly){
 	if (vehicle < (int*)0x100)
 		return;
@@ -51,12 +49,12 @@ void processDustParticles(int* vehicle, bool emitFromCenterOnly){
 	*(float*)0x694850 = 0.5; //dust particles time?
 
 	//particles from car center
-	emitDustParticles((float*)&vehiclePosition, (float*)&particlesDir, a3[0]);
+	Particles::emitDustParticles(&vehiclePosition, &particlesDir, a3[0]);
 
 	//all wheels
 	if (!emitFromCenterOnly){
 		for (int i = 0; i < wheelsCount; i++){
-			emitDustParticles((float*)&wheelsPos[i], (float*)&particlesDir, a3[i]);
+			Particles::emitDustParticles(&wheelsPos[i], &particlesDir, a3[i]);
 		}
 	}
 	int trailerState = *(int *)(((char*)Car_V) + 0x2778);
@@ -93,7 +91,7 @@ void __cdecl onDustEmitCall(float* position, float* direction, float a3){
 	return;
 }
 
-void ParticlesFix::injectHooks(){
+void DustParticlesFix::injectHooks(){
 	//disable dust particles from original function
 	CPatch::RedirectCall(0x551F5C, &onDustEmitCall);
 	CPatch::RedirectCall(0x551D99, &onDustEmitCall);
