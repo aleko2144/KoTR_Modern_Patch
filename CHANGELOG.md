@@ -10,18 +10,19 @@
 ## Game world fixes:
 * Disabled gameworld LODs
 * Fixed collision holes near the dam behind the SouthGate (ch.b3d)
-* Fixed geometry and collision of the blockage in the [secret tunnel on the way to GreyStone](https://github.com/aleko2144/KoTR_Modern_Patch/issues/12#issue-3800217861) (da.b3d -> FallDA2Key object)
-* Fixed terrain collision on the [road behind WestWood](https://github.com/aleko2144/KoTR_Modern_Patch/issues/16) (ar.b3d, as.b3d -> hit_road_ar_042, hit_road_ar_043, hit_road_as_002)
+* Fixed geometry and collision of the blockage in the [secret tunnel on the way to GreyStone](https://github.com/aleko2144/KoTR_Modern_Patch/issues/12#issue-3800217861) (da.b3d)
+* Fixed terrain collision on the [road behind WestWood](https://github.com/aleko2144/KoTR_Modern_Patch/issues/16) (ar.b3d, as.b3d)
+* Fixed multiple collision issues on the [Mercury - Foothill road](https://github.com/aleko2144/KoTR_Modern_Patch/issues/17#issuecomment-3907623594) (av.b3d, aw.b3d, ax.b3d)
+* Fixed multiple collision issues on the [Mercury - St. Helena road](https://github.com/aleko2144/KoTR_Modern_Patch/issues/17#issuecomment-3907623594) (ak.b3d)
+* Fixed collision issues in the [area of the service station near SandyRanch](https://github.com/aleko2144/KoTR_Modern_Patch/issues/17#issuecomment-3907623594) (af.b3d)
 
 ## Game code fixes:
 * Fixed a bug that positioned interiors too low
-* Fixed a bug that causes the tank to become half empty when changing cars with an additional tank installed
-* Fixed 1-second freezes when entering Greystone and improves loading times
+* Fixed a bug that causes the fuel tank to become half empty when changing cars with an additional tank installed
+* Fixed 1-second freezes when entering Greystone and improved loading times
 * Corrected direction of dust particles flying from cars
 * The collision handling parameters between dynamic objects have been reconfigured to reduce vehicles "sticking" during contacts
 * The parameters of the external camera has been adjusted (it no longer flies away)
-
-## Workarounds:
 * A workaround has been made to correct the behavior of road trains (reduced semi-trailer skidding in arcade mode, improved maneuverability in simulation mode)
 * A workaround has been made that slightly improves traffic behavior on narrow roads (north road to Mercury)
 
