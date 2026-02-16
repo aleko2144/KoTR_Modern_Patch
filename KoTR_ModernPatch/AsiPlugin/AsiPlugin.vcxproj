@@ -23,6 +23,9 @@
     <ClCompile Include="sources\GameApp\AI.cpp" />
     <ClCompile Include="sources\GameApp\CarUpgrade.cpp" />
     <ClCompile Include="sources\GameApp\Car_V.cpp" />
+    <ClCompile Include="sources\GameApp\GameResources.cpp" />
+    <ClCompile Include="sources\GameApp\Particles.cpp" />
+    <ClCompile Include="sources\GameApp\Task.cpp" />
     <ClCompile Include="sources\GameApp\Vehicle.cpp" />
     <ClCompile Include="sources\Hooks\AICarFix.cpp" />
     <ClCompile Include="sources\Hooks\CabinCamFix.cpp" />
@@ -31,10 +34,12 @@
     <ClCompile Include="sources\Hooks\FinesCorrection.cpp" />
     <ClCompile Include="sources\Hooks\HorizontalRainFix.cpp" />
     <ClCompile Include="sources\Hooks\MirrorsFix.cpp" />
-    <ClCompile Include="sources\Hooks\ParticlesFix.cpp" />
+    <ClCompile Include="sources\Hooks\DustParticlesFix.cpp" />
     <ClCompile Include="sources\Hooks\QueueSortingFix.cpp" />
     <ClCompile Include="sources\Hooks\STrailersPhysFix.cpp" />
     <ClCompile Include="sources\Hooks\TechSystemFix.cpp" />
+    <ClCompile Include="sources\Hooks\VehicleLightsFix.cpp" />
+    <ClCompile Include="sources\Mods\HT2EffectsMod.cpp" />
     <ClCompile Include="sources\Utils\CMatrix.cpp" />
     <ClCompile Include="sources\Utils\ConfigUtils.cpp" />
     <ClCompile Include="sources\Utils\CVector.cpp" />
@@ -46,6 +51,9 @@
     <ClInclude Include="sources\GameApp\CarUpgrade.h" />
     <ClInclude Include="sources\GameApp\Car_V.h" />
     <ClInclude Include="sources\GameApp\IntrusiveQueue.h" />
+    <ClInclude Include="sources\GameApp\GameResources.h" />
+    <ClInclude Include="sources\GameApp\Particles.h" />
+    <ClInclude Include="sources\GameApp\Task.h" />
     <ClInclude Include="sources\GameApp\Vehicle.h" />
     <ClInclude Include="sources\GameApp\way.h" />
     <ClInclude Include="sources\Hooks\AICarFix.h" />
@@ -55,10 +63,12 @@
     <ClInclude Include="sources\Hooks\FinesCorrection.h" />
     <ClInclude Include="sources\Hooks\HorizontalRainFix.h" />
     <ClInclude Include="sources\Hooks\MirrorsFix.h" />
-    <ClInclude Include="sources\Hooks\ParticlesFix.h" />
+    <ClInclude Include="sources\Hooks\DustParticlesFix.h" />
     <ClInclude Include="sources\Hooks\QueueSortingFix.h" />
     <ClInclude Include="sources\Hooks\STrailersPhysFix.h" />
     <ClInclude Include="sources\Hooks\TechSystemFix.h" />
+    <ClInclude Include="sources\Hooks\VehicleLightsFix.h" />
+    <ClInclude Include="sources\Mods\HT2EffectsMod.h" />
     <ClInclude Include="sources\Utils\CMatrix.h" />
     <ClInclude Include="sources\Utils\ConfigUtils.h" />
     <ClInclude Include="sources\Utils\CPatch.h" />
@@ -71,7 +81,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D050F9D9-613C-4C51-8CEE-9AF4021F1EA2}</ProjectGuid>
     <RootNamespace>AsiPlugin</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>KoTR_ModernPatch</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -84,7 +94,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>

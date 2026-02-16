@@ -90,7 +90,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 			//	printInfo("[PATCH]: applied fines corrections");
 			//}
 
-			if (GetPrivateProfileIntA("patches", "STrailersPhysCorrection", 0, configName)){
+			if (GetPrivateProfileIntA("STRAILER_PHY", "HookEnabled", 0, configName)){
 				STrailersPhysFix::injectHooks();
 				printInfo("[PATCH]: applied roadtrain physics behaviour patches");
 			}

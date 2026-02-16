@@ -1,102 +1,20 @@
 #include "DustParticlesFix.h"
 #include "..\Utils\CPatch.h"
-#include "..\Utils\CVector.h"
-#include "..\Utils\CMatrix.h"
 
-#include "..\GameApp\Particles.h"
+void DustParticlesFix::injectHooks() {
+	//This patch makes the direction of movement of dust particles equal to the vehicle's movement vector (before calling the emitter).
 
-bool call_dust_emitters = false;
+	unsigned char mod_bytes1[] = { 0x8B, 0x8E, 0x60, 0x54, 0x00, 0x00, 0xD9, 0x41, 0x44, 0xD9,
+								   0x5C, 0x24, 0x3C, 0xD9, 0x41, 0x40, 0xD9, 0xE0, 0xD9, 0x5C,
+								   0x24, 0x40, 0xD9, 0x41, 0x48, 0xD9, 0x5C, 0x24, 0x44 };
 
-//TO DO: rewrite this function
-void processDustParticles(int* vehicle, bool emitFromCenterOnly){
-	if (vehicle < (int*)0x100)
-		return;
+	unsigned char mod_bytes2[] = { 0x8B, 0x4C, 0x24, 0x18 };
 
-	int *Car_V = (int *)(vehicle[5400]);
-
-	if (Car_V < (int*)0x100)
-		return;
-
-	int wheelsCount = *(int *)((char*)vehicle + 0x28B8);
-
-	if (!wheelsCount)
-		return;
-
-	if (wheelsCount > 4)
-		wheelsCount = 4;
-
-	CVector* wheelsPos = (CVector *)(((char*)Car_V) + 0x64);
-	CVector* velocityVector = (CVector *)(((char*)Car_V) + 0x40);
-
-	CMatrix vehicle_mtx;
-
-	memcpy(&vehicle_mtx, (const void *)(((char*)Car_V) + 0x10), 0x30u);
-
-	CVector vehiclePosition = vehicle_mtx.pos;
-	CVector vehicleVelocity = velocityVector->normalize();
-	CVector particlesDir;
-	CVector axisDir;
-
-	float* a3 = (float *)((char*)vehicle + 0x27F0);
-
-	particlesDir.x = vehicleVelocity.y;
-	particlesDir.y = -vehicleVelocity.x;
-	particlesDir.z = vehicleVelocity.z;
-
-	//cout << "pos=" << vehiclePos.x << " " << vehiclePos.y << " " << vehiclePos.z << endl;
-	//cout << "dir=" << particlesDir.x << " " << particlesDir.y << " " << particlesDir.z << endl;
-
-	*(float*)0x694850 = 0.5; //dust particles time?
-
-	//particles from car center
-	Particles::emitDustParticles(&vehiclePosition, &particlesDir, a3[0]);
-
-	//all wheels
-	if (!emitFromCenterOnly){
-		for (int i = 0; i < wheelsCount; i++){
-			Particles::emitDustParticles(&wheelsPos[i], &particlesDir, a3[i]);
-		}
-	}
-	int trailerState = *(int *)(((char*)Car_V) + 0x2778);
-	if (trailerState != 1)
-		return;
-
-	int* trailerPtr = (int *)vehicle[5470];
-	if (trailerPtr)
-		processDustParticles(trailerPtr, true);
-}
-
-void onProcessVehicleParticles(int *_vehicle, int *EDX){
-	//if wrong pointer
-	if (_vehicle < (int*)0x700000){
-		if (EDX < (int*)0x700000){
-			return;
-		} else {
-			_vehicle = EDX;
-		}
-	}
-
-	call_dust_emitters = false;
-
-	//call original function
-	((int(__thiscall *)(int*))0x551900)(_vehicle);
-
-	if (call_dust_emitters){
-		processDustParticles(_vehicle, false);
-	}
-}
-
-void __cdecl onDustEmitCall(float* position, float* direction, float a3){
-	call_dust_emitters = true;
-	return;
-}
-
-void DustParticlesFix::injectHooks(){
-	//disable dust particles from original function
-	CPatch::RedirectCall(0x551F5C, &onDustEmitCall);
-	CPatch::RedirectCall(0x551D99, &onDustEmitCall);
-
-	//hook vehicle particle func calls
-	CPatch::RedirectCall(0x54D79C, &onProcessVehicleParticles);
-	CPatch::RedirectCall(0x55065F, &onProcessVehicleParticles);
+	//asm patch
+	CPatch::Nop(0x551CE8, 128);
+	CPatch::SetBytes(0x551CEA, &mod_bytes1, sizeof(mod_bytes1));
+	CPatch::SetBytes(0x551D64, &mod_bytes2, sizeof(mod_bytes2));
+	
+	//dust particles lifetime (default 3.0)
+	CPatch::SetFloat(0x64C1C0, 0.35);
 }

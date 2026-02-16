@@ -5,43 +5,28 @@
 #include "..\GameApp\Car_V.h"
 #include "..\GameApp\Vehicle.h"
 
-//#include <iostream>
+float tractor_steer_coeff = 1.5;
+float tractor_mass_coeff  = 1.0;
+float strailer_mass_coeff = 3.5;
 
 int __fastcall OnCall4FABB0ForTractor(int* carV, int edx, CVector* a2, CVector* a3) {
+	a2->x *= tractor_mass_coeff;
+	a2->y *= tractor_mass_coeff;
+	a2->z *= tractor_mass_coeff;
+
+	return Car_V::sub_4FABB0(carV, a2, a3);
+	/*
 	int* unk_is_trailer_attached = (int*)((char*)carV + 0x2778);
 	*unk_is_trailer_attached = 0;
 
-	return 0; 
+	return 0;
+	*/
 }
 
-int *is_in_sim_mode;
 int __fastcall OnCall4FABB0ForSTrailer(int* carV, int edx, CVector* a2, CVector* a3) {
-	//std::cout << "a2=" << a2->x << " " << a2->y << " " << a2->z << std::endl;
-	//std::cout << "a3=" << a3->x << " " << a3->y << " " << a3->z << std::endl;
-
-	CVector* trc_field_14C = (CVector*)(((char*)carV) + 0x2370);
-	CVector* trc_field_194 = (CVector*)(((char*)carV) + 0x23B8);
-	CVector* trc_techScaleVectorI = (CVector*)(((char*)carV) + 0x1F48);
-	float* trc_mass = (float*)(((char*)carV) + 0x2640);
-
-	CVector::FloatDivide(a2, trc_field_14C, *trc_mass);
-	CVector::LinearDivide(a3, trc_field_194, trc_techScaleVectorI);
-
-	/*
-	if (*is_in_sim_mode) {
-		a2->x *= 10.0;
-		a2->y *= 10.0;
-		a2->z *= 10.0;
-	} else {
-		a2->x *= 3.55;
-		a2->y *= 3.55;
-		a2->z *= 3.55;
-	}
-	*/
-
-	a2->x *= 3.55;
-	a2->y *= 3.55;
-	a2->z *= 3.55;
+	a2->x *= strailer_mass_coeff;
+	a2->y *= strailer_mass_coeff;
+	a2->z *= strailer_mass_coeff;
 
 	return Car_V::sub_4FABB0(carV, a2, a3);
 }
@@ -50,7 +35,7 @@ bool __fastcall OnCallProcessRoadtrainMovement(int* tractor) {
 	int* carV = (int*)(tractor[5400]);
 
 	bool is_player_car = Car_V::isPlayerCarV(carV);
-	is_in_sim_mode = (int*)(((char*)carV) + 10088);
+	int* is_in_sim_mode = (int*)(((char*)carV) + 10088);
 
 	// "Crutch Code Technologies, LTD."
 	// 
@@ -60,11 +45,11 @@ bool __fastcall OnCallProcessRoadtrainMovement(int* tractor) {
 	if (is_player_car && *is_in_sim_mode) {
 		//disable simulator mode and reduce arcade steering coeff
 		*is_in_sim_mode = 0;
-		*(float*)0x674404 = 1.5;
+		*(float*)0x674404 = tractor_steer_coeff;
 
 		bool result = Vehicle::processRoadtrainMovement(tractor);
 
-		//restore values
+		//restore values to default
 		*(float*)0x674404 = 2.0;
 		*is_in_sim_mode = 1;
 
@@ -75,6 +60,10 @@ bool __fastcall OnCallProcessRoadtrainMovement(int* tractor) {
 }
 
 void STrailersPhysFix::injectHooks(){
+	tractor_steer_coeff = GetPrivateProfileFloat("STRAILER_PHY", "tractor_steer_coeff", "1.5", ".\\KoTR_ModernPatch.ini");
+	tractor_mass_coeff  = GetPrivateProfileFloat("STRAILER_PHY", "tractor_coeff", "1.0", ".\\KoTR_ModernPatch.ini");
+	strailer_mass_coeff = GetPrivateProfileFloat("STRAILER_PHY", "strailer_coeff", "3.5", ".\\KoTR_ModernPatch.ini");
+
 	CPatch::RedirectCall(0x55AFFF, &OnCall4FABB0ForTractor);
 	CPatch::RedirectCall(0x55B01A, &OnCall4FABB0ForSTrailer);
 

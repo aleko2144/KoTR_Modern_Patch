@@ -21,6 +21,9 @@
     <Filter Include="Файлы исходного кода\Utils\ModUtils">
       <UniqueIdentifier>{2f16d4b0-f95c-4ff4-8bb8-ea2546e4fb58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы исходного кода\Mods">
+      <UniqueIdentifier>{15d827c9-41c0-4c13-9026-fded8f443f32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sources\dllmain.cpp">
@@ -53,7 +56,7 @@
     <ClCompile Include="sources\Hooks\MirrorsFix.cpp">
       <Filter>Файлы исходного кода\Hooks</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Hooks\ParticlesFix.cpp">
+    <ClCompile Include="sources\Hooks\DustParticlesFix.cpp">
       <Filter>Файлы исходного кода\Hooks</Filter>
     </ClCompile>
     <ClCompile Include="sources\Hooks\TechSystemFix.cpp">
@@ -81,6 +84,21 @@
       <Filter>Файлы исходного кода\Utils\ModUtils</Filter>
     </ClCompile>
     <ClCompile Include="sources\Hooks\ExtCameraFix.cpp">
+      <Filter>Файлы исходного кода\Hooks</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Mods\HT2EffectsMod.cpp">
+      <Filter>Файлы исходного кода\Mods</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\GameApp\GameResources.cpp">
+      <Filter>Файлы исходного кода\GameApp</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\GameApp\Task.cpp">
+      <Filter>Файлы исходного кода\GameApp</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\GameApp\Particles.cpp">
+      <Filter>Файлы исходного кода\GameApp</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Hooks\VehicleLightsFix.cpp">
       <Filter>Файлы исходного кода\Hooks</Filter>
     </ClCompile>
   </ItemGroup>
@@ -115,7 +133,7 @@
     <ClInclude Include="sources\Hooks\MirrorsFix.h">
       <Filter>Файлы исходного кода\Hooks</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Hooks\ParticlesFix.h">
+    <ClInclude Include="sources\Hooks\DustParticlesFix.h">
       <Filter>Файлы исходного кода\Hooks</Filter>
     </ClInclude>
     <ClInclude Include="sources\Hooks\TechSystemFix.h">
@@ -161,6 +179,21 @@
       <Filter>Файлы исходного кода\Utils\ModUtils</Filter>
     </ClInclude>
     <ClInclude Include="sources\Hooks\ExtCameraFix.h">
+      <Filter>Файлы исходного кода\Hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Mods\HT2EffectsMod.h">
+      <Filter>Файлы исходного кода\Mods</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\GameApp\GameResources.h">
+      <Filter>Файлы исходного кода\GameApp</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\GameApp\Task.h">
+      <Filter>Файлы исходного кода\GameApp</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\GameApp\Particles.h">
+      <Filter>Файлы исходного кода\GameApp</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Hooks\VehicleLightsFix.h">
       <Filter>Файлы исходного кода\Hooks</Filter>
     </ClInclude>
   </ItemGroup>
