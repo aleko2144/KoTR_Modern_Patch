@@ -2,7 +2,8 @@
 #define TECH_SYSTEM_FIX_H
 
 namespace TechSystemFix {
-	void injectHooks();
+	bool getOffsets();
+	bool injectHooks();
 }
 
 #endif

@@ -2,7 +2,8 @@
 #define DUST_PARTICLES_FIX_H
 
 namespace DustParticlesFix {
-	void injectHooks();
+	bool getOffsets(int gameVersion);
+	bool injectHooks(int gameVersion);
 }
 
 #endif

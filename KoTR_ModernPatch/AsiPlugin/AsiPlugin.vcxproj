@@ -23,6 +23,7 @@
     <ClCompile Include="sources\GameApp\AI.cpp" />
     <ClCompile Include="sources\GameApp\CarUpgrade.cpp" />
     <ClCompile Include="sources\GameApp\Car_V.cpp" />
+    <ClCompile Include="sources\GameApp\GameObjects.cpp" />
     <ClCompile Include="sources\GameApp\GameResources.cpp" />
     <ClCompile Include="sources\GameApp\Particles.cpp" />
     <ClCompile Include="sources\GameApp\Task.cpp" />
@@ -43,6 +44,7 @@
     <ClCompile Include="sources\Utils\CMatrix.cpp" />
     <ClCompile Include="sources\Utils\ConfigUtils.cpp" />
     <ClCompile Include="sources\Utils\CVector.cpp" />
+    <ClCompile Include="sources\Utils\ExeUtils.cpp" />
     <ClCompile Include="sources\Utils\ModUtils\Patterns.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +52,7 @@
     <ClInclude Include="sources\GameApp\AI.h" />
     <ClInclude Include="sources\GameApp\CarUpgrade.h" />
     <ClInclude Include="sources\GameApp\Car_V.h" />
+    <ClInclude Include="sources\GameApp\GameObjects.h" />
     <ClInclude Include="sources\GameApp\IntrusiveQueue.h" />
     <ClInclude Include="sources\GameApp\GameResources.h" />
     <ClInclude Include="sources\GameApp\Particles.h" />
@@ -73,6 +76,7 @@
     <ClInclude Include="sources\Utils\ConfigUtils.h" />
     <ClInclude Include="sources\Utils\CPatch.h" />
     <ClInclude Include="sources\Utils\CVector.h" />
+    <ClInclude Include="sources\Utils\ExeUtils.h" />
     <ClInclude Include="sources\Utils\ModUtils\Facade.hpp" />
     <ClInclude Include="sources\Utils\ModUtils\HookEach.hpp" />
     <ClInclude Include="sources\Utils\ModUtils\MemoryMgr.h" />

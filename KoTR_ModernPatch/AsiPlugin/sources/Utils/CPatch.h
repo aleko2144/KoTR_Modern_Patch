@@ -58,6 +58,10 @@ public:
 	{
 		Patch((void *)address, &value, 4);
 	}
+	inline static void SetDouble(int address, double value)
+	{
+		Patch((void*)address, &value, 8);
+	}
 	inline static void SetPointer(int address, void *value)
 	{
 		Patch((void *)address, &value, 4);
@@ -77,6 +81,10 @@ public:
 	inline static void GetFloat(int address, float *value)
 	{
 		Patch(value, (void *)address, 4);
+	}
+	inline static void GetDouble(int address, double* value)
+	{
+		Patch(value, (void*)address, 8);
 	}
 	inline static char GetChar(int address)
 	{
@@ -102,4 +110,18 @@ public:
 		Patch(&value, (void *)address, 4);
 		return value;
 	}
+	inline static double GetDouble(int address)
+	{
+		double value;
+		Patch(&value, (void*)address, 8);
+		return value;
+	}
+	/*
+	inline static int* GetFuncByCall(int* address)
+	{
+		int call_addr = GetInt((int)address + 1);
+		int result = (int)address + call_addr + 5;
+		return (int*)result;
+	}
+	*/
 };

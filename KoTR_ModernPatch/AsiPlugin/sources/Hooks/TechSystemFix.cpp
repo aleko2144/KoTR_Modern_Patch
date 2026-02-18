@@ -1,10 +1,25 @@
 #include "TechSystemFix.h"
-#include "..\Utils\CPatch.h"
+#include "../Utils/CPatch.h"
 
-#include "..\GameApp\CarUpgrade.h"
+#include "../Utils/ModUtils/Patterns.h"
+#include "../Utils/ModUtils/MemoryMgr.h" 
 
+//#include "../GameApp/CarUpgrade.h"
+//#include <iostream>
+
+int* callAddr_SetUpgrades;
+//int* funcAddr_SetUpgrades;
 
 void __cdecl OnVehicleSetUpgrades(int *vehicle){
+	return;
+
+	//Do nothing!
+	//It is unclear why the upgrade reinstallation function is called at all when loading / unloading
+	//and changing cars, but it seems that without calling it everything works correctly.
+
+
+	//Old code that fixed upgraded fuel tank level reducement on vehicle switch
+	/*
 	int* Car_V = (int *)(vehicle[5400]);
 	float* fuelUpgrade = (float*)((char*)Car_V + 0x3EF0);
 
@@ -16,13 +31,32 @@ void __cdecl OnVehicleSetUpgrades(int *vehicle){
 
 	//restore previous fuel level
 	CarUpgrade::SetCurrentValue(fuelUpgrade, prevFuelLevel);
-
-	//float newFuelLevel = Upgrade_GetCurrentValue(fuelUpgrade);
-	//cout << "vehicle=" << vehicle << endl;
-	//cout << "prev=" << prevFuelLevel << " new=" << newFuelLevel << endl;
+	*/
 }
 
-void TechSystemFix::injectHooks(){
+bool TechSystemFix::getOffsets() try {
+	using namespace Memory::VP;
+	using namespace hook::txn;
+
+	//0x56F73F, 
+	callAddr_SetUpgrades = (int*)pattern("8B 0D ? ? ? ? 8B 91 ? ? ? ? 52 E8 ? ? ? ?").get_first(13);
+	//funcAddr_SetUpgrades = (int*)ReadCallFrom(callAddr_SetUpgrades);
+
+	//std::cout << "callAddr_SetUpgrades=" << callAddr_SetUpgrades << std::endl;
+	//std::cout << "funcAddr_SetUpgrades=" << funcAddr_SetUpgrades << std::endl;
+
+	return true;
+}
+catch (const hook::txn_exception&)
+{
+	return false;
+}
+
+bool TechSystemFix::injectHooks(){
+	if (!getOffsets())
+		return false;
+	
 	//called on vehicle buy/sell, load/unload and driver switch
-	CPatch::RedirectCall(0x56F73F, &OnVehicleSetUpgrades);
+	CPatch::RedirectCall((int)callAddr_SetUpgrades, &OnVehicleSetUpgrades);
+	return true;
 }

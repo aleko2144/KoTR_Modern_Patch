@@ -101,6 +101,12 @@
     <ClCompile Include="sources\Hooks\VehicleLightsFix.cpp">
       <Filter>Файлы исходного кода\Hooks</Filter>
     </ClCompile>
+    <ClCompile Include="sources\Utils\ExeUtils.cpp">
+      <Filter>Файлы исходного кода\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\GameApp\GameObjects.cpp">
+      <Filter>Файлы исходного кода\GameApp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\dllmain.h">
@@ -195,6 +201,12 @@
     </ClInclude>
     <ClInclude Include="sources\Hooks\VehicleLightsFix.h">
       <Filter>Файлы исходного кода\Hooks</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Utils\ExeUtils.h">
+      <Filter>Файлы исходного кода\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\GameApp\GameObjects.h">
+      <Filter>Файлы исходного кода\GameApp</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
