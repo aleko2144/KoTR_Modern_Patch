@@ -27,7 +27,7 @@ __Versions 8.x are compatible with European 1.x. So patches for 8.2 work on 1.3.
 ## Compiling the project
 * To build the current version of the project, VS2019 is required, for version 1.00/1.01 - VS2012.
 * To load an asi file into the game, it is recommended to use [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader) by [ThirteenAG](https://github.com/ThirteenAG)
-* Modified game resources for the current version of the patch are published here: https://disk.yandex.ru/d/8vJAj0gO_5vukA
+* Modified game resources for the current version of the patch are published here __(only for 8.x/1.x)__: https://disk.yandex.ru/d/8vJAj0gO_5vukA
 
 ## Used sources
 * File "CPatch.h" and some game structures are included from [D2DInputWrapper](https://github.com/Voron295/rignroll-dinput-wrapper) by [Voron295](https://github.com/Voron295)
