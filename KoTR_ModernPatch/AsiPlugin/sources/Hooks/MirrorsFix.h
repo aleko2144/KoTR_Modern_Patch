@@ -2,7 +2,8 @@
 #define MIRRORS_FIX_H
 
 namespace MirrorsFix {
-	void injectHooks();
+	bool getOffsets(int gameVersion);
+	bool injectHooks(int gameVersion);
 }
 
 #endif

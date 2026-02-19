@@ -4,11 +4,8 @@
 #include "../Utils/ModUtils/Patterns.h"
 #include "../Utils/ModUtils/MemoryMgr.h" 
 
-//#include "../GameApp/CarUpgrade.h"
-//#include <iostream>
 
 int* callAddr_SetUpgrades;
-//int* funcAddr_SetUpgrades;
 
 void __cdecl OnVehicleSetUpgrades(int *vehicle){
 	return;
@@ -38,14 +35,8 @@ bool TechSystemFix::getOffsets() try {
 	using namespace Memory::VP;
 	using namespace hook::txn;
 
-	//0x56F73F, 
 	callAddr_SetUpgrades = (int*)pattern("8B 0D ? ? ? ? 8B 91 ? ? ? ? 52 E8 ? ? ? ?").get_first(13);
-	//funcAddr_SetUpgrades = (int*)ReadCallFrom(callAddr_SetUpgrades);
-
-	//std::cout << "callAddr_SetUpgrades=" << callAddr_SetUpgrades << std::endl;
-	//std::cout << "funcAddr_SetUpgrades=" << funcAddr_SetUpgrades << std::endl;
-
-	return true;
+	return callAddr_SetUpgrades != 0;
 }
 catch (const hook::txn_exception&)
 {

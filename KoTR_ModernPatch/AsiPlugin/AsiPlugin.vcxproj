@@ -20,14 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sources\dllmain.cpp" />
-    <ClCompile Include="sources\GameApp\AI.cpp" />
-    <ClCompile Include="sources\GameApp\CarUpgrade.cpp" />
-    <ClCompile Include="sources\GameApp\Car_V.cpp" />
     <ClCompile Include="sources\GameApp\GameObjects.cpp" />
-    <ClCompile Include="sources\GameApp\GameResources.cpp" />
-    <ClCompile Include="sources\GameApp\Particles.cpp" />
-    <ClCompile Include="sources\GameApp\Task.cpp" />
-    <ClCompile Include="sources\GameApp\Vehicle.cpp" />
     <ClCompile Include="sources\Hooks\AICarFix.cpp" />
     <ClCompile Include="sources\Hooks\CabinCamFix.cpp" />
     <ClCompile Include="sources\Hooks\CollisionsFix.cpp" />
@@ -40,7 +33,6 @@
     <ClCompile Include="sources\Hooks\STrailersPhysFix.cpp" />
     <ClCompile Include="sources\Hooks\TechSystemFix.cpp" />
     <ClCompile Include="sources\Hooks\VehicleLightsFix.cpp" />
-    <ClCompile Include="sources\Mods\HT2EffectsMod.cpp" />
     <ClCompile Include="sources\Utils\CMatrix.cpp" />
     <ClCompile Include="sources\Utils\ConfigUtils.cpp" />
     <ClCompile Include="sources\Utils\CVector.cpp" />
@@ -49,15 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sources\dllmain.h" />
-    <ClInclude Include="sources\GameApp\AI.h" />
-    <ClInclude Include="sources\GameApp\CarUpgrade.h" />
-    <ClInclude Include="sources\GameApp\Car_V.h" />
     <ClInclude Include="sources\GameApp\GameObjects.h" />
     <ClInclude Include="sources\GameApp\IntrusiveQueue.h" />
-    <ClInclude Include="sources\GameApp\GameResources.h" />
-    <ClInclude Include="sources\GameApp\Particles.h" />
-    <ClInclude Include="sources\GameApp\Task.h" />
-    <ClInclude Include="sources\GameApp\Vehicle.h" />
     <ClInclude Include="sources\GameApp\way.h" />
     <ClInclude Include="sources\Hooks\AICarFix.h" />
     <ClInclude Include="sources\Hooks\CabinCamFix.h" />
@@ -71,7 +56,6 @@
     <ClInclude Include="sources\Hooks\STrailersPhysFix.h" />
     <ClInclude Include="sources\Hooks\TechSystemFix.h" />
     <ClInclude Include="sources\Hooks\VehicleLightsFix.h" />
-    <ClInclude Include="sources\Mods\HT2EffectsMod.h" />
     <ClInclude Include="sources\Utils\CMatrix.h" />
     <ClInclude Include="sources\Utils\ConfigUtils.h" />
     <ClInclude Include="sources\Utils\CPatch.h" />

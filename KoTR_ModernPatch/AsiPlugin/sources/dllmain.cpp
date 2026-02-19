@@ -21,10 +21,6 @@
 //#include "Hooks\HorizontalRainFix.h"
 //#include "Utils\CPatch.h"
 
-//mods
-#include "Mods\HT2EffectsMod.h"
-//
-
 using namespace std;
 
 bool printDebugInfo;
@@ -71,6 +67,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 			printInfo("Modern Patch v1.03");
 			printGameVersion(gameVersion);
 
+			//v6.x minimal
 			if (GetPrivateProfileIntA("patches", "QueueSortingFix", 0, configName)) {
 				if (QueueSortingFix::injectHooks()) {
 					printInfo("[PATCH]: applied queue sorting fixes");
@@ -84,14 +81,19 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 				}
 			}
 
-			if (GetPrivateProfileIntA("patches", "MirrorsFix", 0, configName)){
+			if (GetPrivateProfileIntA("patches", "TechSystemFix", 0, configName) && gameVersion >= 80) {
+				if (TechSystemFix::injectHooks())
+					printInfo("[PATCH]: injected vehicle upgrade system patches");
+			}
+
+			if (GetPrivateProfileIntA("patches", "MirrorsFix", 0, configName) && gameVersion >= 72){
 				if (MirrorsFix::injectHooks(gameVersion)) {
 					printInfo("[PATCH]: injected mirror system patches");
 				}
 			}
 
 			//old game versions doesn't need collision coeffs correction
-			if (GetPrivateProfileIntA("patches", "CollisionsFix", 0, configName) && gameVersion > 71) {
+			if (GetPrivateProfileIntA("patches", "CollisionsFix", 0, configName) && gameVersion >= 72) {
 				if (CollisionsFix::injectHooks()) {
 					printInfo("[PATCH]: applied collision corrections");
 				}
@@ -103,28 +105,19 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 				}
 			}
 
-			if (GetPrivateProfileIntA("patches", "TechSystemFix", 0, configName) && gameVersion >= 80) {
-				if (TechSystemFix::injectHooks())
-					printInfo("[PATCH]: injected vehicle upgrade system patches");
-			}
-
 			if (GetPrivateProfileIntA("patches", "DustParticlesFix", 0, configName) && gameVersion >= 70) {
 				if (DustParticlesFix::injectHooks(gameVersion))
 					printInfo("[PATCH]: injected dust particle patches");
 			}
 
-			//patches for 8.2 only
-			if (gameVersion == 82) {
-
-				if (GetPrivateProfileIntA("AI_CAR", "HookEnabled", 0, configName)) {
-					AICarFix::injectHooks();
+			if (GetPrivateProfileIntA("AI_CAR", "HookEnabled", 0, configName) && gameVersion >= 74) {
+				if (AICarFix::injectHooks(gameVersion))
 					printInfo("[PATCH]: injected AI patches");
-				}
+			}
 
-				if (GetPrivateProfileIntA("STRAILER_PHY", "HookEnabled", 0, configName)) {
-					STrailersPhysFix::injectHooks();
+			if (GetPrivateProfileIntA("STRAILER_PHY", "HookEnabled", 0, configName) && gameVersion >= 70) {
+				if (STrailersPhysFix::injectHooks(gameVersion))
 					printInfo("[PATCH]: applied roadtrain physics behaviour patches");
-				}
 			}
 
 			//445AF4 infinity loop if trailer detached on mafia attack???//
@@ -148,11 +141,6 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 			//	printInfo("[PATCH]: affinity limit disabled");
 			//}
 			/////
-
-			//if (GetPrivateProfileIntA("mods", "HT2Effects", 0, configName)) {
-			//	HT2EffectsMod::injectHooks();
-			//	printInfo("[MOD]: loaded HTruck 2 effects");
-			//}
 
 			break;
 		}

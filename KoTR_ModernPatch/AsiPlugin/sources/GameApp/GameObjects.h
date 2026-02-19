@@ -3,5 +3,7 @@
 
 int* GetCWinAppPtr();
 int* GetViewerPtr(int gameVersion);
+int* GetPlayerVehiclePtr();
+int GetCarVOffset(int gameVersion);
 
 #endif

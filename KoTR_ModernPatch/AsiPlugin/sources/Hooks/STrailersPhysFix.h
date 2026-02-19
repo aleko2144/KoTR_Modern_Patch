@@ -2,7 +2,8 @@
 #define STRAILERS_PHYS_FIX_H
 
 namespace STrailersPhysFix {
-	void injectHooks();
+	bool getOffsets(int gameVersion);
+	bool injectHooks(int gameVersion);
 }
 
 #endif

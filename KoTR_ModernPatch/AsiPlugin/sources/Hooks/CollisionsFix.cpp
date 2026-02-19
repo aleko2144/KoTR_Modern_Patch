@@ -18,6 +18,9 @@ bool CollisionsFix::injectHooks() try {
 	//std::cout << "repulsionCoeff=" << addr_repulsionCoeff << std::endl;
 	//std::cout << "collisionCoeff=" << addr_collisionCoeff << std::endl;
 
+	if (!addr_repulsionCoeff || !addr_collisionCoeff)
+		return false;
+
 	//replace default collision_coeff in truck.ini read function
 	CPatch::SetFloat((int)addr_collisionCoeff, collisionCoeff);
 	//replace pointer to replusion_coeff (?) in object-object collision function
