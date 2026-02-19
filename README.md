@@ -2,6 +2,8 @@
 King of the Road [Modern Patch](https://www.moddb.com/games/hard-truck-2/downloads/king-of-the-road-modern-patch) sources.</br>
 Patch v1.00/v1.01 with mods sources are available [there](https://github.com/aleko2144/KoTR_Modern_Patch/tree/1.00).
 
+[Описание на русском языке доступно здесь](README-RU.md)
+
 ## What is it?
 A patch for the game that fixes some bugs and flaws in the original game, as well as introduces some improvements.</br>
 The list of changes is [available here](CHANGELOG.md).
