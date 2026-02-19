@@ -4,8 +4,6 @@
 #include "../Utils/ModUtils/Patterns.h"
 #include "../Utils/ModUtils/MemoryMgr.h" 
 
-//#include <iostream>
-
 int* particlesCodeStart;
 float* dustParticlesLifetime;
 
@@ -19,37 +17,30 @@ bool DustParticlesFix::getOffsets(int gameVersion) try {
 		//0x56F73F, 
 		particlesCodeStart = (int*)pattern("C7 44 24 ? ? ? ? ? DB 44 24 2C 8B 4C 24 18").get_first(8);
 	}
-
-	//std::cout << "particlesCodeStart=" << particlesCodeStart << std::endl;
-
-
-	//flt_675418 lifetime in 6.6
 	
 	if (gameVersion >= 71) {
 		dustParticlesLifetime = *(float**)pattern("8B 0D ? ? ? ? C7 05 ? ? ? ? ? ? ? ? 89 0D ? ? ? ?").get_first(2);
 	} else {
 		dustParticlesLifetime = *(float**)pattern("8B 0D ? ? ? ? C7 05 ? ? ? ? ? ? ? ? 89 0D ? ? ? ?").get_first(2);
 	}
+	bool result = dustParticlesLifetime && particlesCodeStart;
 
-	//int temp = (int)pattern("8B 0D ? ? ? ? C7 05 ? ? ? ? ? ? ? ? 89 0D ? ? ? ?").get_first(0);
-	//std::cout << "temp=" << temp << std::endl;
-
-	//64C1C0 in 8.2
-	//std::cout << "dustParticlesLifetime=" << dustParticlesLifetime << std::endl;
-
-	return true;
+	return result;
 }
 catch (const hook::txn_exception&)
 {
 	return false;
 }
 
-uintptr_t particlesFunc_out_addr;
+DWORD particlesFunc_out_addr;
+DWORD Car_V_offset;
 
 __declspec(naked) VOID applyAsmPatch_v82() {
 	__asm {
 		//указатель на Car_V (7.3 - 8.2)
-		mov     ecx, dword ptr[esi + 5460h]
+		//mov     ecx, dword ptr[esi + 5460h]
+		mov     ecx, dword ptr[Car_V_offset]
+		mov     ecx, dword ptr[esi + ecx]
 
 		//Car_V->vehicle_velocity.y
 		fld     dword ptr[ecx + 44h]
@@ -65,7 +56,6 @@ __declspec(naked) VOID applyAsmPatch_v82() {
 		fld     dword ptr[ecx + 48h]
 		fstp    dword ptr[esp + 44h]
 
-		//???
 		mov ecx, dword ptr[esp + 18h]
 
 		//прыжок в оригинальную функцию
@@ -73,37 +63,12 @@ __declspec(naked) VOID applyAsmPatch_v82() {
 	}
 }
 
-__declspec(naked) VOID applyAsmPatch_v73() {
-	__asm {
-		//Car_V 7.3 - 8.2 pointer
-		mov     eax, dword ptr[ebx + 5460h]
-
-		//direction.x
-		fld     dword ptr[eax + 44h] //Car_V->velocity.y
-		fstp    dword ptr[esp + 4Ch] //dir.x
-
-		//direction.y
-		fld     dword ptr[eax + 40h]  //Car_V->velocity.x
-		fchs                          //invert sign
-		fstp    dword ptr[esp + 50h]  //dir.y
-
-		//direction.z
-		//fld     dword ptr[eax + 40h] //Car_V->velocity.z
-		//fstp    dword ptr[esp + 54h] //dir.z
-
-		//54F9E5     mov     eax, [esp+194h+var_160]
-		mov eax, dword ptr[esp + 34h]
-
-		//прыжок в оригинальную функцию
-		//return to original function
-		jmp particlesFunc_out_addr
-	}
-}
-
 __declspec(naked) VOID applyAsmPatch_v71() {
 	__asm {
 		//Car_V 7.1 - 7.2 pointer
-		mov     eax, dword ptr[ebx + 5010h]
+		//mov     eax, dword ptr[ebx + 5010h]
+		mov     eax, dword ptr[Car_V_offset]
+		mov     eax, dword ptr[ebx + eax]
 
 		//direction.x
 		fld     dword ptr[eax + 44h] //Car_V->velocity.y
@@ -121,7 +86,7 @@ __declspec(naked) VOID applyAsmPatch_v71() {
 		//54F9E5     mov     eax, [esp+194h+var_160]
 		mov eax, dword ptr[esp + 34h]
 
-		//прыжок в оригинальную функцию
+		//возвращение в оригинальную функцию
 		//return to original function
 		jmp particlesFunc_out_addr
 	}
@@ -129,32 +94,34 @@ __declspec(naked) VOID applyAsmPatch_v71() {
 
 bool DustParticlesFix::injectHooks(int gameVersion) {
 
-	if (!getOffsets(gameVersion) || !particlesCodeStart)
+	if (!getOffsets(gameVersion))
 		return false;
 
 	//This patch makes the direction of movement of dust particles equal to the vehicle's movement vector (before calling the emitter).
 
 	particlesFunc_out_addr = (int)particlesCodeStart + 5;
 
+	//7.3 - 8.2
+	Car_V_offset = 0x5460;
+
 	//7.1 - 7.2
 	if (gameVersion < 73) {
+		Car_V_offset = 0x5010;
+	}
+
+	//7.1 - 7.3
+	if (gameVersion < 74) {
 		CPatch::Nop((int)particlesCodeStart, 144);
 		CPatch::RedirectJump((int)particlesCodeStart, &applyAsmPatch_v71);
 		//std::cout << "applyAsmPatch_v71\n";
-
-	} else if (gameVersion == 73) {
-		CPatch::Nop((int)particlesCodeStart, 144);
-		CPatch::RedirectJump((int)particlesCodeStart, &applyAsmPatch_v73);
-		//std::cout << "applyAsmPatch_v73\n";
-
+	//7.4 - 8.2
 	} else {
 		CPatch::Nop((int)particlesCodeStart, 126);
 		CPatch::RedirectJump((int)particlesCodeStart, &applyAsmPatch_v82);
 		//std::cout << "applyAsmPatch_v82\n";
 	}
 
-	if (dustParticlesLifetime)
-		CPatch::SetFloat((int)dustParticlesLifetime, 0.35);
+	CPatch::SetFloat((int)dustParticlesLifetime, 0.35);
 
 	return true;
 	
