@@ -132,7 +132,8 @@ bool STrailersPhysFix::getOffsets(int gameVersion) try {
 	//0x6F6930 in 8.2
 	playerVehicle = (int**)GetPlayerVehiclePtr();
 	Car_V_offset  = GetCarVOffset(gameVersion);
-
+	
+	/*
 	std::cout << "funcAddr_4FABB0         =" << std::hex << funcAddr_4FABB0 << std::endl;
 	std::cout << "callAddr_4FABB0_tractor =" << callAddr_4FABB0_tractor << std::endl;
 	std::cout << "callAddr_4FABB0_strailer=" << callAddr_4FABB0_strailer << std::endl;
@@ -141,7 +142,8 @@ bool STrailersPhysFix::getOffsets(int gameVersion) try {
 	std::cout << "addr_strailer_detach    =" << addr_strailer_detach << std::endl;
 	std::cout << "steering_help           =" << steering_help << std::endl;
 	std::cout << "playerVehicle           =" << playerVehicle << std::endl;
-
+	*/
+	
 	bool result = funcAddr_4FABB0 && callAddr_4FABB0_tractor && callAddr_4FABB0_strailer && callAddr_processRDtrains && funcAddr_processRDtrains && addr_strailer_detach && steering_help && playerVehicle;
 	return result;
 }
