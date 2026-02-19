@@ -1,12 +1,12 @@
 ## Game code fixes:
 * Fixed a bug that positioned interiors too low
-* Fixed a bug that causes the fuel tank to become half empty when changing cars with an additional tank installed
+* _Experimental patch:_ fixed a bug in vehicle upgrade system that causes the fuel tank to become half empty when changing cars with an additional tank installed
 * Fixed 1-second freezes when entering Greystone and improved loading times
 * Corrected direction of dust particles flying from cars
 * The collision handling parameters between dynamic objects have been reconfigured to reduce vehicles "sticking" during contacts
 * The parameters of the external camera has been adjusted (it no longer flies away)
-* A workaround has been made to correct the behavior of road trains (reduced semi-trailer skidding in arcade mode, improved maneuverability in simulation mode)
-* A workaround has been made that slightly improves traffic behavior on narrow roads (north road to Mercury)
+* Corrected behavior of road trains (reduced semi-trailer skidding in arcade mode, improved maneuverability in simulation mode)
+* Improves traffic behavior on narrow roads (north road to Mercury)
 * Partially fixed bugs in rendering rear-view mirrors that occurred when playing in 16x9
 
 ## Game resources fixes (only for 8.x/1.x):
