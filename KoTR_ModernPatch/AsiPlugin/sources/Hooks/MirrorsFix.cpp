@@ -103,8 +103,6 @@ bool MirrorsFix::injectHooks(int gameVersion){
 	bool can_apply_mirrors_transforms = callAddr_CameraInstanceReset && funcAddr_CameraInstanceReset && CWinAppPtr && ViewerPtr;
 	bool can_apply_mirrors_switcher   = callAddr_ProcessMirrors && funcAddr_ProcessMirrors && isMirrorsProcessed && cabinCameraRotation;
 
-	//is_ui_hooks_enabled = GetPrivateProfileIntA("HOOKS", "EnableUIFix", 0, ".\\d2gi.ini");
-
 	if (can_apply_mirrors_transforms)
 		CPatch::RedirectCall((int)callAddr_CameraInstanceReset, &OnCameraInstanceReset);
 

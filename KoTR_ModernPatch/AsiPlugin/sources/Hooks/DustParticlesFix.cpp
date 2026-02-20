@@ -16,15 +16,10 @@ bool DustParticlesFix::getOffsets(int gameVersion) try {
 	if (gameVersion >= 60 && gameVersion < 74) {
 		particlesCodeStart = (int*)pattern("C7 44 24 ? ? ? ? ? DB 44 24 30 D9 C0 D8 0D").get_first(8);
 	} else if (gameVersion >= 74) {
-
 		particlesCodeStart = (int*)pattern("C7 44 24 ? ? ? ? ? DB 44 24 2C 8B 4C 24 18").get_first(8);
 	}
 
-	if (gameVersion >= 71) {
-		dustParticlesLifetime = *(float**)pattern("8B 0D ? ? ? ? C7 05 ? ? ? ? ? ? ? ? 89 0D ? ? ? ?").get_first(2);
-	} else {
-		dustParticlesLifetime = *(float**)pattern("8B 0D ? ? ? ? C7 05 ? ? ? ? ? ? ? ? 89 0D ? ? ? ?").get_first(2);
-	}
+	dustParticlesLifetime = *(float**)pattern("8B 0D ? ? ? ? C7 05 ? ? ? ? ? ? ? ? 89 0D ? ? ? ?").get_first(2);
 
 	bool result = dustParticlesLifetime && particlesCodeStart;
 
@@ -40,7 +35,7 @@ DWORD Car_V_offset;
 
 __declspec(naked) VOID applyAsmPatch_v82() {
 	__asm {
-		//указатель на Car_V (7.3 - 8.2)
+		//СѓРєР°Р·Р°С‚РµР»СЊ РЅР° Car_V (7.3 - 8.2)
 		//mov     ecx, dword ptr[esi + 5460h]
 		mov     ecx, dword ptr[Car_V_offset]
 		mov     ecx, dword ptr[esi + ecx]
@@ -62,7 +57,7 @@ __declspec(naked) VOID applyAsmPatch_v82() {
 		//???
 		mov ecx, dword ptr[esp + 18h]
 
-		//прыжок в оригинальную функцию
+		//РїСЂС‹Р¶РѕРє РІ РѕСЂРёРіРёРЅР°Р»СЊРЅСѓСЋ С„СѓРЅРєС†РёСЋ
 		jmp particlesFunc_out_addr
 	}
 }
@@ -90,7 +85,7 @@ __declspec(naked) VOID applyAsmPatch_v71() {
 		//54F9E5     mov     eax, [esp+194h+var_160]
 		mov eax, dword ptr[esp + 34h]
 
-		//возвращение в оригинальную функцию
+		//РІРѕР·РІСЂР°С‰РµРЅРёРµ РІ РѕСЂРёРіРёРЅР°Р»СЊРЅСѓСЋ С„СѓРЅРєС†РёСЋ
 		//return to original function
 		jmp particlesFunc_out_addr
 	}

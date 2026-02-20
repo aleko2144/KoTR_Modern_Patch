@@ -6,8 +6,6 @@
 #include "../Utils/ModUtils/Patterns.h"
 #include "../Utils/ModUtils/MemoryMgr.h" 
 
-#include <iostream>
-
 double forced_camera_interp_coeff   = 0.85;
 double forced_camera_rotation_coeff = 1.04719753;
 

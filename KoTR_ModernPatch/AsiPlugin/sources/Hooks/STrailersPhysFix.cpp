@@ -8,8 +8,6 @@
 
 #include "../GameApp/GameObjects.h"
 
-#include <iostream>
-
 float tractor_steer_coeff = 1.5;
 float tractor_mass_coeff  = 1.0;
 float strailer_mass_coeff = 3.5;
@@ -111,8 +109,7 @@ bool STrailersPhysFix::getOffsets(int gameVersion) try {
 		funcAddr_4FABB0 = (int)pattern("83 EC 30 8B 44 24 34 53 55 56 8B F1 57 D9 86 ? ? ? ? D9 C0 D8 08 8D BE").get_first();
 
 		int call_4FABB0_start = (int)pattern("83 C4 0C 89 8C 24 ? ? ? ? 8D 8C 24 ? ? ? ? 8B 50 04 51 8B 8B ? ? ? ? 89 94 24 ? ? ? ? ").get_first();
-		std::cout << "call_4FABB0_start       =" << std::hex << call_4FABB0_start << std::endl;
-
+		
 		//0x55AFFF in 8.2
 		callAddr_4FABB0_tractor = call_4FABB0_start + 198;
 		//0x55B01A in 8.2
@@ -132,18 +129,7 @@ bool STrailersPhysFix::getOffsets(int gameVersion) try {
 	//0x6F6930 in 8.2
 	playerVehicle = (int**)GetPlayerVehiclePtr();
 	Car_V_offset  = GetCarVOffset(gameVersion);
-	
-	/*
-	std::cout << "funcAddr_4FABB0         =" << std::hex << funcAddr_4FABB0 << std::endl;
-	std::cout << "callAddr_4FABB0_tractor =" << callAddr_4FABB0_tractor << std::endl;
-	std::cout << "callAddr_4FABB0_strailer=" << callAddr_4FABB0_strailer << std::endl;
-	std::cout << "callAddr_processRDtrains=" << callAddr_processRDtrains << std::endl;
-	std::cout << "funcAddr_processRDtrains=" << funcAddr_processRDtrains << std::endl;
-	std::cout << "addr_strailer_detach    =" << addr_strailer_detach << std::endl;
-	std::cout << "steering_help           =" << steering_help << std::endl;
-	std::cout << "playerVehicle           =" << playerVehicle << std::endl;
-	*/
-	
+
 	bool result = funcAddr_4FABB0 && callAddr_4FABB0_tractor && callAddr_4FABB0_strailer && callAddr_processRDtrains && funcAddr_processRDtrains && addr_strailer_detach && steering_help && playerVehicle;
 	return result;
 }

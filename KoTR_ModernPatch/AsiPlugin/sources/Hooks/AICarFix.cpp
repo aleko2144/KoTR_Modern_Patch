@@ -1,12 +1,9 @@
 #include "AICarFix.h"
-#include "..\utils\CPatch.h"
-#include "..\utils\CVector.h"
-#include "..\utils\ConfigUtils.h"
+#include "../Utils/CPatch.h"
+#include "../Utils/CVector.h"
+#include "../Utils/ConfigUtils.h"
 
-#include "..\GameApp\way.h"
-//#include "..\GameApp\AI.h"
-
-#include <iostream>
+#include "../GameApp/way.h"
 
 #include "../Utils/ModUtils/Patterns.h"
 #include "../Utils/ModUtils/MemoryMgr.h" 
