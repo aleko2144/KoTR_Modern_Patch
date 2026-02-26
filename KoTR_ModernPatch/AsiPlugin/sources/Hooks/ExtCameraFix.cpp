@@ -9,9 +9,9 @@
 double forced_camera_interp_coeff   = 0.85;
 double forced_camera_rotation_coeff = 1.04719753;
 
-int funcAddr_CameraProcess; //0x599FC0
+int funcAddr_CameraProcess; //0x599FC0 in 8.2
 int callAddr_CameraProcess; //0x53677C
-int* addr_CameraRotCoeff;
+int* addr_CameraRotCoeff;   //0x650AF0
 
 int* __fastcall OnCameraInstanceProcess(int* _this, int edx, int* matrix, double interp_coeff){	
 	//call original function
@@ -22,7 +22,13 @@ bool ExtCameraFix::getOffsets() try {
 	using namespace Memory::VP;
 	using namespace hook::txn;
 
-	callAddr_CameraProcess = (int)pattern("B9 ? ? ? ? E8 ? ? ? ? D9 06").get_first(5);
+	//v 6.7 - 8.2
+	try {
+		callAddr_CameraProcess = (int)pattern("B9 ? ? ? ? E8 ? ? ? ? D9 06").get_first(5);
+	} catch (const hook::txn_exception&) {
+		callAddr_CameraProcess = (int)pattern("85 ? ? ? ? 50 E8 ? ? ? ? D9 06").get_first(6);
+	}
+
 	funcAddr_CameraProcess = (int)ReadCallFrom(callAddr_CameraProcess);
 
 	addr_CameraRotCoeff = *(int**)pattern("DD 81 ? ? ? ? DC 0D ? ? ? ? DC 43 70 DD 5B 70").get_first(8);
