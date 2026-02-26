@@ -82,7 +82,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 				}
 			}
 
-			if (GetPrivateProfileIntA("patches", "TechSystemFix", 0, configName) && gameVersion >= 80) {
+			if (GetPrivateProfileIntA("patches", "TechSystemFix", 0, configName) && gameVersion >= 60) {
 				if (TechSystemFix::injectHooks())
 					printInfo("[PATCH]: injected vehicle upgrade system patches");
 			}
