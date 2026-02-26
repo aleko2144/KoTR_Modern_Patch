@@ -16,6 +16,7 @@
 #include "Hooks\STrailersPhysFix.h"
 #include "Hooks\QueueSortingFix.h"
 #include "Hooks\ExtCameraFix.h"
+#include "Hooks\InfoPanelFix.h"
 //
 
 //#include "Hooks\HorizontalRainFix.h"
@@ -107,7 +108,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 
 			if (GetPrivateProfileIntA("patches", "DustParticlesFix", 0, configName) && gameVersion >= 69) {
 				if (DustParticlesFix::injectHooks(gameVersion))
-					printInfo("[PATCH]: injected dust particle patches");
+					printInfo("[PATCH]: injected dust particles patch");
 			}
 
 			if (GetPrivateProfileIntA("AI_CAR", "HookEnabled", 0, configName) && gameVersion >= 74) {
@@ -118,6 +119,12 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 			if (GetPrivateProfileIntA("STRAILER_PHY", "HookEnabled", 0, configName) && gameVersion >= 70) {
 				if (STrailersPhysFix::injectHooks(gameVersion))
 					printInfo("[PATCH]: applied roadtrain physics behaviour patches");
+			}
+
+			if (GetPrivateProfileIntA("patches", "InfoPanelFix", 0, configName) && gameVersion >= 60) {
+				if (InfoPanelFix::injectHooks()) {
+					printInfo("[PATCH]: applied information panel patch");
+				}
 			}
 
 			//445AF4 infinity loop if trailer detached on mafia attack???//
