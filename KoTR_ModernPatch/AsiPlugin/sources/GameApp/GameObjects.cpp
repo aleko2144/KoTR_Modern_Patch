@@ -36,9 +36,13 @@ int GetCarVOffset(int gameVersion) {
 	//7.3 - 8.2
 	int result = 0x5460;
 
-	//7.1 - 7.2
-	if (gameVersion < 73) {
+	//7.0 - 7.2
+	if (gameVersion < 73 && gameVersion >= 70) {
 		result = 0x5010;
+	} else if (gameVersion == 69) {
+		result = 0x5008;
+	} else if (gameVersion == 66) {
+		result = 0x4EB8;
 	}
 
 	return result;

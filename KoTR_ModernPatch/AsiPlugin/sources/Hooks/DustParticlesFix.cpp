@@ -15,7 +15,8 @@ bool DustParticlesFix::getOffsets(int gameVersion) try {
 
 	if (gameVersion >= 60 && gameVersion < 74) {
 		particlesCodeStart = (int*)pattern("C7 44 24 ? ? ? ? ? DB 44 24 30 D9 C0 D8 0D").get_first(8);
-	} else if (gameVersion >= 74) {
+	}
+	else if (gameVersion >= 74) {
 		particlesCodeStart = (int*)pattern("C7 44 24 ? ? ? ? ? DB 44 24 2C 8B 4C 24 18").get_first(8);
 	}
 
@@ -102,7 +103,7 @@ bool DustParticlesFix::injectHooks(int gameVersion) {
 
 	Car_V_offset = GetCarVOffset(gameVersion);
 
-	//7.1 - 7.3
+	//6.9 - 7.3
 	if (gameVersion < 74) {
 		CPatch::Nop((int)particlesCodeStart, 144);
 		CPatch::RedirectJump((int)particlesCodeStart, &applyAsmPatch_v71);
@@ -115,5 +116,5 @@ bool DustParticlesFix::injectHooks(int gameVersion) {
 	CPatch::SetFloat((int)dustParticlesLifetime, 0.35);
 
 	return true;
-	
+
 }

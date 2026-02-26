@@ -93,7 +93,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 				}
 			}
 
-			if (GetPrivateProfileIntA("patches", "CollisionsFix", 0, configName) && gameVersion >= 60) {
+			if (GetPrivateProfileIntA("patches", "CollisionsFix", 0, configName) && gameVersion > 65) {
 				if (CollisionsFix::injectHooks(gameVersion)) {
 					printInfo("[PATCH]: applied collision corrections");
 				}
@@ -105,7 +105,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 				}
 			}
 
-			if (GetPrivateProfileIntA("patches", "DustParticlesFix", 0, configName) && gameVersion >= 70) {
+			if (GetPrivateProfileIntA("patches", "DustParticlesFix", 0, configName) && gameVersion >= 69) {
 				if (DustParticlesFix::injectHooks(gameVersion))
 					printInfo("[PATCH]: injected dust particle patches");
 			}
