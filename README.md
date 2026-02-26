@@ -12,17 +12,19 @@ The list of changes is [available here](CHANGELOG.md).
 |Patch|Description|Supported game versions|
 |-----|-----------|-----------------------|
 |QueueSortingFix|Fixes 1-second freezes when entering Greystone and improves loading times|6.6 - 8.2|
-|ExtCameraFix|Corrects external camera movement behind the player’s vehicle|6.7 - 8.2|
-|DustParticlesFix|Corrects the direction of emitted dust particles from cars|7.0 - 8.2|
+|ExtCameraFix|Corrects external camera movement behind the player’s vehicle| |
+|CollisionsFix|Corrects the collision handling parameters for dynamic objects| |
+|InfoPanelFix|Corrects the display of gears > 9 in the top interface bar| |
+|TechSystemFix*|Fixes bugs in the upgrade system, such as fuel disappearing when vehicles switches with an additional tank is installed, visual disappearance of installed upgrades, etc.| |
+|DustParticlesFix|Corrects the direction of emitted dust particles from cars|6.9 - 8.2|
 |STrailersPhysFix|Corrects semi-trailer physics behavior|7.0 - 8.2|
-|CollisionsFix|Corrects the collision handling parameters for dynamic objects|7.2 - 8.2|
-|MirrorsFix*|Solves mirror render problems when playing at 16:9|7.2 - 8.2|
+|MirrorsFix**|Solves mirror render problems when playing at 16:9|7.2 - 8.2|
 |AICarFix|Corrects traffic behavior on narrow two-lane roads|7.4 - 8.2|
 |CabinCamFix|Fixes a bug that causes cabins to be positioned too low|8.0 - 8.2|
-|TechSystemFix**|Fixes bugs in the upgrade system, such as fuel disappearing when vehicles switches with an additional tank is installed, visual disappearance of installed upgrades, etc.|8.0 - 8.2|
 
-*_Works correctly only with [D2GI](https://github.com/REDPOWAR/D2GI/) with hooks enabled_</br>
-**_Experimental patch - the impact on the game is not fully understood_</br>
+*_Experimental patch - the impact on the game is not fully understood_</br>
+**_Works correctly only with [D2GI](https://github.com/REDPOWAR/D2GI/) with hooks enabled_</br>
+
 
 __Versions 8.x are compatible with European 1.x. So patches for 8.2 work on 1.3.__
 
