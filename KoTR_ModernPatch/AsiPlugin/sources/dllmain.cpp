@@ -41,6 +41,7 @@ void printGameVersion(int version) {
 		cout << "unknown (failed to detect)" << endl;
 	}
 }
+
 void displayConsole(){
 	AllocConsole();
 	freopen("conin$","r", stdin);
@@ -64,7 +65,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 			if (printDebugInfo)
 				displayConsole();
 
-			printInfo("Modern Patch v1.03");
+			printInfo("Modern Patch v1.04");
 			printGameVersion(gameVersion);
 
 			//v6.x minimal
@@ -92,9 +93,8 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 				}
 			}
 
-			//old game versions doesn't need collision coeffs correction
-			if (GetPrivateProfileIntA("patches", "CollisionsFix", 0, configName) && gameVersion >= 72) {
-				if (CollisionsFix::injectHooks()) {
+			if (GetPrivateProfileIntA("patches", "CollisionsFix", 0, configName) && gameVersion >= 60) {
+				if (CollisionsFix::injectHooks(gameVersion)) {
 					printInfo("[PATCH]: applied collision corrections");
 				}
 			}

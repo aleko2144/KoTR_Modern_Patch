@@ -2,7 +2,7 @@
 #define COLLISIONS_FIX_H
 
 namespace CollisionsFix {
-	bool injectHooks();
+	bool injectHooks(int gameVersion);
 }
 
 #endif
