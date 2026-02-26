@@ -14,7 +14,7 @@ The list of changes is [available here](CHANGELOG.md).
 |QueueSortingFix|Fixes 1-second freezes when entering Greystone and improves loading times|6.6 - 8.2|
 |ExtCameraFix|Corrects external camera movement behind the player’s vehicle| |
 |CollisionsFix|Corrects the collision handling parameters for dynamic objects| |
-|InfoPanelFix|Corrects the display of gears > 9 in the top interface bar| |
+|InfoPanelFix|Fixes the display of the selected gear higher than 9 in the top panel of the interface| |
 |TechSystemFix*|Fixes bugs in the upgrade system, such as fuel disappearing when vehicles switches with an additional tank is installed, visual disappearance of installed upgrades, etc.| |
 |DustParticlesFix|Corrects the direction of emitted dust particles from cars|6.9 - 8.2|
 |STrailersPhysFix|Corrects semi-trailer physics behavior|7.0 - 8.2|
