@@ -8,25 +8,22 @@ Patch v1.00/v1.01 with mods sources are available [there](https://github.com/ale
 A patch for the game that fixes some bugs and flaws in the original game, as well as introduces some improvements.</br>
 The list of changes is [available here](CHANGELOG.md).
 
+Important! This patch does not resolve launch issues. For proper game performance on modern computers, I recommend using [D2GI](https://github.com/REDPOWAR/D2GI/).
+
 ## Compatibility with game versions
 |Patch|Description|Supported game versions|
 |-----|-----------|-----------------------|
-|QueueSortingFix|Fixes 1-second freezes when entering Greystone and improves loading times|6.6 - 8.2|
+|QueueSortingFix|Fixes 1-second freezes when entering Greystone and improves loading times|6.6 - 8.2/1.x|
 |ExtCameraFix|Corrects external camera movement behind the player’s vehicle| |
 |CollisionsFix|Corrects the collision handling parameters for dynamic objects| |
 |InfoPanelFix|Fixes the display of the selected gear higher than 9 in the top panel of the interface| |
 |TechSystemFix*|Fixes bugs in the upgrade system, such as fuel disappearing when vehicles switches with an additional tank is installed, visual disappearance of installed upgrades, etc.| |
-|DustParticlesFix|Corrects the direction of emitted dust particles from cars|6.9 - 8.2|
-|STrailersPhysFix|Corrects semi-trailer physics behavior|7.0 - 8.2|
-|MirrorsFix**|Solves mirror render problems when playing at 16:9|7.2 - 8.2|
-|AICarFix|Corrects traffic behavior on narrow two-lane roads|7.4 - 8.2|
-|CabinCamFix|Fixes a bug that causes cabins to be positioned too low|8.0 - 8.2|
+|DustParticlesFix|Corrects the direction of emitted dust particles from cars|6.9 - 8.2/1.x|
+|STrailersPhysFix|Corrects semi-trailer physics behavior|7.0 - 8.2/1.x|
+|AICarFix|Corrects traffic behavior on narrow two-lane roads|7.4 - 8.2/1.x|
+|CabinCamFix|Fixes a bug that causes cabins to be positioned too low|8.0 - 8.2/1.x|
 
 *_Experimental patch - the impact on the game is not fully understood_</br>
-**_Works correctly only with [D2GI](https://github.com/REDPOWAR/D2GI/) with hooks enabled_</br>
-
-
-__Versions 8.x are compatible with European 1.x. So patches for 8.2 work on 1.3.__
 
 ## Compiling the project
 * To build the current version of the project, VS2019 is required, for version 1.00/1.01 - VS2012.

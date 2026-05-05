@@ -44,15 +44,6 @@
     <ClCompile Include="sources\Hooks\CollisionsFix.cpp">
       <Filter>Файлы исходного кода\Hooks</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Hooks\FinesCorrection.cpp">
-      <Filter>Файлы исходного кода\Hooks</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\Hooks\HorizontalRainFix.cpp">
-      <Filter>Файлы исходного кода\Hooks</Filter>
-    </ClCompile>
-    <ClCompile Include="sources\Hooks\MirrorsFix.cpp">
-      <Filter>Файлы исходного кода\Hooks</Filter>
-    </ClCompile>
     <ClCompile Include="sources\Hooks\DustParticlesFix.cpp">
       <Filter>Файлы исходного кода\Hooks</Filter>
     </ClCompile>
@@ -71,14 +62,14 @@
     <ClCompile Include="sources\Hooks\ExtCameraFix.cpp">
       <Filter>Файлы исходного кода\Hooks</Filter>
     </ClCompile>
-    <ClCompile Include="sources\Hooks\VehicleLightsFix.cpp">
-      <Filter>Файлы исходного кода\Hooks</Filter>
-    </ClCompile>
     <ClCompile Include="sources\Utils\ExeUtils.cpp">
       <Filter>Файлы исходного кода\Utils</Filter>
     </ClCompile>
     <ClCompile Include="sources\GameApp\GameObjects.cpp">
       <Filter>Файлы исходного кода\GameApp</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\Hooks\InfoPanelFix.cpp">
+      <Filter>Файлы исходного кода\Hooks</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -101,15 +92,6 @@
       <Filter>Файлы исходного кода\Hooks</Filter>
     </ClInclude>
     <ClInclude Include="sources\Hooks\CollisionsFix.h">
-      <Filter>Файлы исходного кода\Hooks</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\Hooks\FinesCorrection.h">
-      <Filter>Файлы исходного кода\Hooks</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\Hooks\HorizontalRainFix.h">
-      <Filter>Файлы исходного кода\Hooks</Filter>
-    </ClInclude>
-    <ClInclude Include="sources\Hooks\MirrorsFix.h">
       <Filter>Файлы исходного кода\Hooks</Filter>
     </ClInclude>
     <ClInclude Include="sources\Hooks\DustParticlesFix.h">
@@ -148,14 +130,14 @@
     <ClInclude Include="sources\Hooks\ExtCameraFix.h">
       <Filter>Файлы исходного кода\Hooks</Filter>
     </ClInclude>
-    <ClInclude Include="sources\Hooks\VehicleLightsFix.h">
-      <Filter>Файлы исходного кода\Hooks</Filter>
-    </ClInclude>
     <ClInclude Include="sources\Utils\ExeUtils.h">
       <Filter>Файлы исходного кода\Utils</Filter>
     </ClInclude>
     <ClInclude Include="sources\GameApp\GameObjects.h">
       <Filter>Файлы исходного кода\GameApp</Filter>
+    </ClInclude>
+    <ClInclude Include="sources\Hooks\InfoPanelFix.h">
+      <Filter>Файлы исходного кода\Hooks</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

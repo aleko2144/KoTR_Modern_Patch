@@ -7,7 +7,7 @@
 * The parameters of the external camera has been adjusted (it no longer flies away)
 * Corrected behavior of road trains (reduced semi-trailer skidding in arcade mode, improved maneuverability in simulation mode)
 * Improves traffic behavior on narrow roads (north road to Mercury)
-* Partially fixed bugs in rendering rear-view mirrors that occurred when playing in 16x9
+* Corrected display of double-digit gears in the top panel of the interface
 
 ## Game resources fixes (only for 8.x/1.x):
 ### Vehicle files:

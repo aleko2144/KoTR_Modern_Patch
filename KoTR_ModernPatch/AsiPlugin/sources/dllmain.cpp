@@ -6,19 +6,17 @@
 #include "Utils\ExeUtils.h"
 
 //patches
-#include "Hooks\MirrorsFix.h"
+//#include "Hooks\MirrorsFix.h"
 #include "Hooks\CollisionsFix.h"
 #include "Hooks\DustParticlesFix.h"
 #include "Hooks\CabinCamFix.h"
 #include "Hooks\TechSystemFix.h"
-#include "Hooks\FinesCorrection.h"
+//#include "Hooks\FinesCorrection.h"
 #include "Hooks\AICarFix.h"
 #include "Hooks\STrailersPhysFix.h"
 #include "Hooks\QueueSortingFix.h"
 #include "Hooks\ExtCameraFix.h"
 #include "Hooks\InfoPanelFix.h"
-//
-
 //#include "Hooks\HorizontalRainFix.h"
 //#include "Utils\CPatch.h"
 
@@ -88,12 +86,6 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 					printInfo("[PATCH]: injected vehicle upgrade system patches");
 			}
 
-			if (GetPrivateProfileIntA("patches", "MirrorsFix", 0, configName) && gameVersion >= 72){
-				if (MirrorsFix::injectHooks(gameVersion)) {
-					printInfo("[PATCH]: injected mirror system patches");
-				}
-			}
-
 			if (GetPrivateProfileIntA("patches", "CollisionsFix", 0, configName) && gameVersion > 65) {
 				if (CollisionsFix::injectHooks(gameVersion)) {
 					printInfo("[PATCH]: applied collision corrections");
@@ -126,28 +118,6 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 					printInfo("[PATCH]: applied information panel patch");
 				}
 			}
-
-			//445AF4 infinity loop if trailer detached on mafia attack???//
-
-			/////
-
-			//if (GetPrivateProfileIntA("patches", "FinesCorrection", 0, configName)){
-			//	FinesCorrection::injectHooks();
-			//	printInfo("[PATCH]: applied fines corrections");
-			//}
-
-			//rain fix and affinity limit disable now exists in the D2GI
-			//
-			//if (GetPrivateProfileIntA("patches", "HorizontalRainFix", 0, configName)){
-			//	HorizontalRainFix::injectHooks();
-			//	printInfo("[PATCH]: applied horizontal rain fix");
-			//}
-
-			//if (GetPrivateProfileIntA("patches", "NoAffinityLimit", 0, configName)){
-			//	CPatch::Nop(0x50C885, 15);
-			//	printInfo("[PATCH]: affinity limit disabled");
-			//}
-			/////
 
 			break;
 		}

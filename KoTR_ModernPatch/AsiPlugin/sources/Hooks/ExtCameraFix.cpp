@@ -13,6 +13,9 @@ int funcAddr_CameraProcess; //0x599FC0 in 8.2
 int callAddr_CameraProcess; //0x53677C
 int* addr_CameraRotCoeff;   //0x650AF0
 
+//int funcAddr_CameraReset; //0x531FEB in 8.2
+//int callAddr_CameraReset; //0x598E00
+
 int* __fastcall OnCameraInstanceProcess(int* _this, int edx, int* matrix, double interp_coeff){	
 	//call original function
 	return ((int* (__thiscall*)(int*, int*, double))funcAddr_CameraProcess)(_this, matrix, forced_camera_interp_coeff);
@@ -32,6 +35,10 @@ bool ExtCameraFix::getOffsets() try {
 	funcAddr_CameraProcess = (int)ReadCallFrom(callAddr_CameraProcess);
 
 	addr_CameraRotCoeff = *(int**)pattern("DD 81 ? ? ? ? DC 0D ? ? ? ? DC 43 70 DD 5B 70").get_first(8);
+	
+	//camera reset calls
+	//callAddr_CameraReset = (int)pattern("B9 ? ? ? ? E8 ? ? ? ? 89 1D ? ? ? ? 8B 8D ? ? ? ? 51 8B CD E8").get_first(5);
+	//funcAddr_CameraReset = (int)ReadCallFrom(callAddr_CameraReset);
 
 	bool result = callAddr_CameraProcess && funcAddr_CameraProcess && addr_CameraRotCoeff;
 	return result;
@@ -51,6 +58,7 @@ bool ExtCameraFix::injectHooks() {
 
 	CPatch::SetDouble((int)addr_CameraRotCoeff, forced_camera_rotation_coeff);
 	CPatch::RedirectCall((int)callAddr_CameraProcess, &OnCameraInstanceProcess);
+	//CPatch::RedirectCall((int)callAddr_CameraReset, &OnCameraInstanceReset);
 
 	return true;
 }
