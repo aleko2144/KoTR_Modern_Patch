@@ -19,6 +19,7 @@ int funcAddr_getPlayerPosId;
 int funcAddr_getCoordinates;
 int funcAddr_getRoadParams;
 
+int addr_dbl_dist80;
 
 
 bool __cdecl sub_4CFD50(void* playerID) {
@@ -106,18 +107,10 @@ bool AICarFix::getOffsets(int gameVersion) try {
 	funcAddr_getRoadParams = (int)pattern("8D 8C 24 ? ? ? ? 8D 74 24 70 51 B9 ? ? ? ? 83 EC 20 8B FC F3 A5 E8 ? ? ? ?").get_first(24);
 	funcAddr_getRoadParams = (int)ReadCallFrom(funcAddr_getRoadParams);
 
-	/*
-	std::cout << "callAddr_sub_4CFD50=" << std::hex << callAddr_sub_4CFD50 << std::endl;
-	std::cout << "funcAddr_sub_4CFD50=" << funcAddr_sub_4CFD50 << std::endl;
+	// 0x4CE1E8 in 8.2
+	addr_dbl_dist80 = (int)pattern("DC 1D ? ? ? ? 83 C4 04 5E DF E0 F6 C4 01 74 09 B8 ? ? ? ? 83 C4 78 C3 33 C0 83 C4 78 C3").get_first(2);
 
-	std::cout << "addr_dbl_dist1=" << addr_dbl_dist1 << " 2=" << addr_dbl_dist2 << " incr=" << addr_dbl_incr << std::endl;
-
-	std::cout << "getPlayerPosId=" << funcAddr_getPlayerPosId << std::endl;
-	std::cout << "getCoordinates=" << funcAddr_getCoordinates << std::endl;
-	std::cout << "getRoadParams =" << funcAddr_getRoadParams  << std::endl;
-	*/
-
-	bool result = funcAddr_sub_4CFD50 && callAddr_sub_4CFD50 && addr_dbl_dist1 && addr_dbl_dist2 && addr_dbl_incr && funcAddr_getPlayerPosId && funcAddr_getCoordinates && funcAddr_getRoadParams;
+	bool result = funcAddr_sub_4CFD50 && callAddr_sub_4CFD50 && addr_dbl_dist1 && addr_dbl_dist2 && addr_dbl_incr && funcAddr_getPlayerPosId && funcAddr_getCoordinates && funcAddr_getRoadParams && addr_dbl_dist80;
 	return result;
 }
 catch (const hook::txn_exception&)
@@ -125,16 +118,13 @@ catch (const hook::txn_exception&)
 	return false;
 }
 
-//TO DO: исправить езду задним ходом AI-автомобилей по встречной полосе
-//TO DO: fix jerky reverse movement of AI cars in the oncoming lane when entering the observer's line of sight
+double dbl_veh_dist_check_80 = 80.0;
 
 //в общем, на узких дорогах надо ограничивать зону сканирования препятствий соседней полосой, чтобы AI-машина не могла видеть встречное движение
 //on narrow roads, it is necessary to somehow dynamically limit the obstacle scanning zone to the adjacent lane so that the AI-car cannot see oncoming traffic
 bool AICarFix::injectHooks(int gameVersion){
 	if (!getOffsets(gameVersion))
 		return false;
-
-	//return true;
 
 	new_dist = GetPrivateProfileDouble("AI_CAR", "loop_dist", "150.0", ".\\KoTR_ModernPatch.ini");
 	new_incr = GetPrivateProfileDouble("AI_CAR", "loop_incr", "30.0",  ".\\KoTR_ModernPatch.ini");
@@ -143,10 +133,10 @@ bool AICarFix::injectHooks(int gameVersion){
 	CPatch::SetPointer(addr_dbl_dist1, &dbl_dist);
 	CPatch::SetPointer(addr_dbl_dist2, &dbl_dist);
 	CPatch::SetPointer(addr_dbl_incr, &dbl_incr);
-	
-	//hook function before do/while cycle
-	CPatch::RedirectCall(callAddr_sub_4CFD50, &OnCall4CFD50);
 
-	//std::cout << "roadParamsAddr=" << std::hex << &roadParams << std::endl;
+	//distance when set veh_in_mode to 1
+	dbl_veh_dist_check_80 = GetPrivateProfileDouble("AI_CAR", "dist_mode_1", "80.0", ".\\KoTR_ModernPatch.ini");
+	CPatch::SetPointer(addr_dbl_dist80, &dbl_veh_dist_check_80);
+	
 	return true;
 }

@@ -64,7 +64,8 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL, DWORD fdwReason, LPVOID lpvReserved)
 			if (printDebugInfo)
 				displayConsole();
 
-			printInfo("Modern Patch v1.04");
+			printInfo("Modern Patch v1.05");
+			printInfo("https://github.com/aleko2144/KoTR_Modern_Patch");
 			printGameVersion(gameVersion);
 
 			//v6.x minimal
