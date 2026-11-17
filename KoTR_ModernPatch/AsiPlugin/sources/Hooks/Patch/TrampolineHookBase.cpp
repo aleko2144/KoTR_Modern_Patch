@@ -4,47 +4,80 @@
 
 bool TrampolineHookBase::InstallTrampoline()
 {
-    if (BytesCountToSteal() + jmpInstructionSize > trampolineSizeLimit) {
+    if (trampolineInfo_.isInstalled) {
         return false;
     }
 
-    void *original = reinterpret_cast<void *>(OriginalFunctionP());
+    trampolineInfo_ = {};
+
+    if (BytesCountToSteal() + redirectJumpInstructionSize > trampolineSizeLimit) {
+        return false;
+    }
+
+    void *original = OriginalFunction();
     if (!original) {
         return false;
     }
 
-    memcpy(trampoline, original, BytesCountToSteal());
-    trampoline[BytesCountToSteal()] = jmpCode;
+    CPatch::SetBytes(reinterpret_cast<uintptr_t>(trampoline), original, BytesCountToSteal());
     CPatch::RedirectJump(reinterpret_cast<uintptr_t>(trampoline) + BytesCountToSteal(),
                          reinterpret_cast<void *>(reinterpret_cast<uintptr_t>(original)
                                                   + BytesCountToSteal()));
 
-    DWORD old{};
+    DWORD lpflOldProtect{};
     VirtualProtect(trampoline,
-                   BytesCountToSteal() + jmpInstructionSize,
+                   BytesCountToSteal() + redirectJumpInstructionSize,
                    PAGE_EXECUTE_READWRITE,
-                   &old);
+                   &lpflOldProtect);
 
     CPatch::RedirectJump(reinterpret_cast<uintptr_t>(original), HookFunction());
+
+    trampolineInfo_ = {.isInstalled = true, .original = original};
 
     return true;
 }
 
-void *TrampolineHookBase::TrampolineFunction()
+bool TrampolineHookBase::UninstallTrampoline()
 {
-    return trampoline;
+    if (trampolineInfo_.isInstalled) {
+        CPatch::SetBytes(reinterpret_cast<uintptr_t>(trampolineInfo_.original),
+                         trampoline,
+                         redirectJumpInstructionSize);
+        trampolineInfo_ = {};
+        return true;
+    } else {
+        return false;
+    }
 }
 
-uintptr_t TrampolineHookBase::OriginalFunctionP()
+void *TrampolineHookBase::TrampolineFunction()
+{
+    if (trampolineInfo_.isInstalled) {
+        return trampoline;
+    } else {
+        return nullptr;
+    }
+}
+
+void *TrampolineHookBase::OriginalFunction()
 {
     try {
         auto loc = OriginalFunctionLocation();
-        auto addr = hook::txn::pattern(loc.pattern).count(1).get_first(0);
-        if (!addr) {
-            return 0;
+        auto patternMatcher = hook::txn::pattern(loc.pattern);
+        if (patternMatcher.size() != 1) {
+            return nullptr;
         }
-        return reinterpret_cast<uintptr_t>(addr) + loc.offset;
+        auto addr = patternMatcher.get_first(0);
+        if (!addr) {
+            return nullptr;
+        }
+        return reinterpret_cast<void *>(reinterpret_cast<uintptr_t>(addr) + loc.offset);
     } catch (const hook::txn_exception &) {
-        return 0;
+        return nullptr;
     }
+}
+
+TrampolineHookBase::~TrampolineHookBase()
+{
+    UninstallTrampoline();
 }

@@ -7,7 +7,7 @@
 class TrampolineHookBase
 {
 public:
-    virtual ~TrampolineHookBase() = default;
+    virtual ~TrampolineHookBase();
 
 protected:
     struct functionLocation
@@ -17,24 +17,30 @@ protected:
     };
 
     bool InstallTrampoline();
+    bool UninstallTrampoline();
+
+    void *TrampolineFunction();
 
     virtual functionLocation OriginalFunctionLocation() const = 0;
 
-    // 5+ bytes; near relative JMP size (5), rounded up to whole instruction boundary
+    // 5+ bytes; near relative JMP size (5) for RedirectJump; rounded up to whole instruction boundary
     virtual uintptr_t BytesCountToSteal() const = 0;
 
     virtual void *HookFunction() const = 0;
 
-    void *TrampolineFunction();
-
 private:
-    static const uintptr_t jmpInstructionSize = 5;
-    static const uint8_t jmpCode = 0xE9;
+    static const uintptr_t redirectJumpInstructionSize = 5;
 
     static const int trampolineSizeLimit = 32;
     uint8_t trampoline[trampolineSizeLimit];
 
-    virtual uintptr_t OriginalFunctionP();
+    struct trampolineInfo
+    {
+        bool isInstalled{false};
+        void *original{nullptr};
+    } trampolineInfo_{};
+
+    void *OriginalFunction();
 };
 
 #endif
